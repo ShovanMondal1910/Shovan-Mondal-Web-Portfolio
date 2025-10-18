@@ -674,8 +674,8 @@ nav ul li a {
 }
 .skill-card {
   background: rgba(22, 33, 62, 0.7);
-  border-radius: 50%;
-  padding: 10px;
+  border-radius: 28px; 
+  padding: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -684,8 +684,8 @@ nav ul li a {
   border: 3px solid transparent;
   margin-right: 40px;
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 500px; /* wider card */
+  height: 380px; /* noticeably taller */
   text-align: center;
   position: relative;
   overflow: visible;
@@ -694,8 +694,8 @@ nav ul li a {
 .skill-card::before {
   content: '';
   position: absolute;
-  width: 150px;
-  height: 50px;
+  width: 220px;
+  height: 70px;
   border: 1px solid rgba(0, 170, 255, 0.4);
   border-radius: 50%;
   transform: translate(-50%, -50%) rotateX(70deg) rotateZ(30deg);
@@ -704,8 +704,8 @@ nav ul li a {
   z-index: -1;
   top: 50%;
   left: 50%;
-  box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0) 70%);
+  box-shadow: 0 0 14px rgba(0, 170, 255, 0.3);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%,rgba(0,0,0,0) 70%);
 }
 .skill-card:hover::before {
   border-color: #00aaff;
@@ -719,16 +719,16 @@ nav ul li a {
   background: rgba(22, 33, 62, 0.9);
 }
 .skill-logo {
-  width: 40px;
-  height: 40px;
+  width: 120px; /* larger logo to match taller card */
+  height: 120px;
   margin-right: 0;
-  margin-bottom: 0;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 170, 255, 0.1);
+  background: rgba(0, 170, 255, 0.06);
   border-radius: 50%;
-  padding: 8px;
+  padding: 12px;
   transition: all 0.3s ease;
 }
 .skill-card:hover .skill-logo {
@@ -740,6 +740,19 @@ nav ul li a {
   height: 100%;
   object-fit: contain;
   filter: none;
+}
+
+/* Responsive: ensure skill cards fit on small screens */
+@media (max-width: 768px) {
+  .skill-card { width: 200px; height: 260px; margin-right: 16px; }
+  .skill-logo { width: 70px; height: 70px; padding: 8px; }
+  .skill-info h3 { font-size: 0.9rem; }
+}
+
+@media (max-width: 576px) {
+  .skill-card { width: 110px; height: 110px; margin-right: 12px; padding: 8px; border-radius: 14px; }
+  .skill-logo { width: 48px; height: 48px; padding: 6px; }
+  .skill-info h3 { font-size: 0.8rem; }
 }
 .skill-info {
   flex: 1;
@@ -1093,4 +1106,3 @@ nav ul li a {
   border-radius: 20px;
   font-size: 0.8rem;
 }
-
