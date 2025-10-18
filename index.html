@@ -14,15 +14,20 @@
       flex-direction: column;
       align-items: center;
     }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    img, video { max-width: 100%; height: auto; display: block; }
     nav {
       width: 100%;
       background: linear-gradient(90deg, #1a1a2e, #16213e);
       padding: 10px 0;
       text-align: center;
+      position: relative;
     }
     nav ul {
       list-style: none;
       padding: 0;
+      margin-right: 50px; /* Make space for the always-visible hamburger */
     }
     nav ul li {
       display: inline;
@@ -32,6 +37,35 @@
       color: #00aaff;
       text-decoration: none;
     }
+
+  /* Show hamburger toggle on all screen sizes with hover effect */
+  .nav-toggle {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  .nav-toggle .bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin: 4px 0;
+    background: #00aaff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-toggle:hover .bar {
+    background: #00ccff;
+  }
+  .nav-toggle:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
     .section {
       width: 80%;
       margin: 20px 0;
@@ -81,6 +115,11 @@
 </head>
 <body>
   <nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -102,7 +141,7 @@
     <div class="profile-card">
       <div class="profile-image">
         <div class="image-wrapper">
-          <img src="Shovan.jpg" alt="Shovan Mondal" class="profile-photo">
+          <img src="Shovan.jpg" alt="Shovan Mondal" class="profile-photo" loading="lazy">
           <div class="image-border"></div>
           <div class="tech-orbit">
             <div class="tech-icon" style="--i:1">
@@ -142,7 +181,7 @@
       <div class="typing-container">
         <h3 class="profile-subtitle">
           <span id="typing-text"></span>
-          <span class="typing-cursor">||-----</span>
+          <span class="typing-cursor"></span>
         </h3>
       </div>
       
@@ -679,13 +718,36 @@
       justify-content: center;
     }
   }
+
+  /* Extra small screen tweaks (phones) */
+  @media (max-width: 420px) {
+    .section { width: 95%; padding: 14px; border-radius: 12px; }
+    .section h2, .section-title { font-size: 1.6rem; }
+    .about-container { padding: 0 12px; gap: 18px; }
+    .image-wrapper { width: 160px; height: 160px; }
+    .profile-photo { border-radius: 12px; }
+    .profile-content { transform: none; padding: 6px 0; }
+    .stats-container { flex-direction: column; gap: 10px; align-items: center; }
+    .action-btn { width: 100%; padding: 12px 16px; font-size: 1rem; border-radius: 12px; box-shadow: none; }
+    .action-btn.secondary { width: 100%; padding: 12px 16px; }
+    .profile-actions { gap: 12px; flex-direction: column; }
+  .experience-content { min-height: auto; padding: 12px; width: auto; }
+    .experience-timeline::before { left: 12px; }
+    .experience-date { left: 4px; width: 64px; font-size: 0.8rem; }
+    .skills-container, .projects-container, .blog-container, .certifications-container, .volunteer-container { gap: 12px; }
+    .skill-card, .project-card, .blog-post-card, .certification-card, .volunteer-card { width: 100%; }
+    /* reduce heavy glows on small screens */
+    .image-border, .profile-badge span, .tech-icon { box-shadow: none; }
+  }
 </style>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
   // Initialize particles.js
   document.addEventListener('DOMContentLoaded', function() {
-    if (typeof particlesJS !== 'undefined') {
+    // Only initialize heavy background effects on non-mobile devices
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile && typeof particlesJS !== 'undefined') {
       particlesJS('particles-js', {
         particles: {
           number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -737,8 +799,8 @@
       }
     }
     
-    // Start typing animation
-    setTimeout(type, 1000);
+  // Start typing animation (guarded)
+  if (typingText) setTimeout(type, 1000);
     
     // Number counter animation
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -798,6 +860,66 @@
     observer.observe(aboutSection);
   });
 </script>
+
+<script>
+  // Mobile nav toggle
+  (function(){
+    document.addEventListener('DOMContentLoaded', function(){
+      const nav = document.querySelector('nav');
+      const toggle = document.querySelector('.nav-toggle');
+      if (!nav || !toggle) return;
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.classList.toggle('no-scroll', isOpen);
+      });
+
+      // Close nav when a link is clicked (mobile)
+      nav.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.tagName === 'A' && nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    });
+  })();
+</script>
+
+    <script>
+      // Social buttons ripple & keyboard support
+      (function(){
+        function createRipple(e, el) {
+          const rect = el.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'social-ripple';
+          // position relative to element
+          const x = (e.clientX !== undefined ? e.clientX : (rect.left + rect.width/2)) - rect.left;
+          const y = (e.clientY !== undefined ? e.clientY : (rect.top + rect.height/2)) - rect.top;
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          el.appendChild(ripple);
+          // force reflow then show
+          window.getComputedStyle(ripple).opacity;
+          ripple.classList.add('visible');
+          // cleanup
+          setTimeout(() => { ripple.remove(); }, 520);
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+          const socialLinks = document.querySelectorAll('.social-link');
+          socialLinks.forEach(el => {
+            el.addEventListener('pointerdown', (ev) => { createRipple(ev, el); });
+            el.addEventListener('keydown', (ev) => {
+              if (ev.key === 'Enter' || ev.key === ' ') {
+                createRipple({ clientX: el.getBoundingClientRect().left + el.offsetWidth/2, clientY: el.getBoundingClientRect().top + el.offsetHeight/2 }, el);
+              }
+            });
+          });
+        });
+      })();
+    </script>
 
 
  <div class="section" id="experience">
@@ -1129,6 +1251,70 @@
     padding: 3px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
+  }
+  
+  /* Responsive: collapse timeline to single column on small screens */
+  @media (max-width: 768px) {
+    .experience-timeline {
+      padding: 10px 20px;
+    }
+
+    .experience-timeline::before {
+      left: 20px; /* move the vertical line to the left */
+      margin-left: 0;
+    }
+
+    .experience-item {
+      margin-bottom: 30px;
+    }
+
+    .experience-content {
+      width: auto;
+      margin: 0 0 0 70px; /* leave space for the date bubble */
+      text-align: left;
+      min-height: auto;
+      padding: 12px;
+    }
+
+    .experience-item:nth-child(odd) .experience-content,
+    .experience-item:nth-child(even) .experience-content {
+      margin-left: 70px;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .experience-date {
+      position: absolute;
+      left: 12px;
+      transform: none;
+      top: 8px;
+      width: 56px;
+      padding: 6px 8px;
+      font-size: 0.85rem;
+    }
+
+    .experience-content::before {
+      display: none; /* hide the decorative diamond on mobile */
+    }
+  }
+</style>
+
+<style>
+  /* Tighten spacing between Skills and Education sections */
+  /* Keeps other section spacing intact; reduces top margin on #skills and bottom margin on #education */
+  #skills { margin-top: 1.25rem; }
+  #education { margin-top: 0.5rem; margin-bottom: 1.25rem; }
+
+  /* On larger screens, slightly reduce the space even more to keep flow compact */
+  @media (min-width: 992px) {
+    #skills { margin-top: 0.75rem; }
+    #education { margin-top: 0.25rem; margin-bottom: 1rem; }
+  }
+
+  /* On very small screens ensure sections don't feel cramped */
+  @media (max-width: 420px) {
+    #skills { margin-top: 0.75rem; }
+    #education { margin-top: 0.5rem; margin-bottom: 0.75rem; }
   }
 </style>
 
@@ -1684,7 +1870,7 @@
         <h3>Bachelor of Computer Science & Engineering</h3>
         <span class="date">2024 - Present</span>
         <span class="institution"><a href="https://www.aiub.edu/" target="_blank" rel="noopener noreferrer">American International University-Bangladesh</a></span>
-        <p> Current GPA: Confidential/4.0</p>
+        <p> Current CGPA: 3.64 / 4.0</p>
       </div>
     </div>
     <div class="timeline-item">
@@ -1702,9 +1888,20 @@
         <h3>Secondary School Certificate</h3>
         <span class="date">2015 - 2020</span>
         <span class="institution"><a href="https://www.sohopathi.com/kapotaksha-high-school/" target="_blank" rel="noopener noreferrer">Kapataksha High School</a></span>
-        <p>General Studies with focus on Mathematics and Science. Scored 95% in final exams.</p>
+        <p>Science Studies with focus on Mathematics. Scored 90% in final exams.</p>
       </div>
     </div>
+
+     <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Primary School Certificate</h3>
+        <span class="date">2010 - 2015</span>
+        <span class="institution"><a href="https://mapcarta.com/N6114699126" target="_blank" rel="noopener noreferrer">Padmapukur shantimoyee primary school</a></span>
+        <p>General studies in bangla medium. Scored 80% in final exams.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2748,7 +2945,7 @@
           <button type="submit" class="submit-btn" id="submitBtn">
             <span>SEND MESSAGE</span>
             <div class="submit-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <svg xmlns="https://wa.me/1976192554" viewBox="0 0 24 24" width="24" height="24">
                 <path fill="none" d="M0 0h24v24H0z"/>
                 <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"/>
               </svg>
@@ -2756,6 +2953,8 @@
             <div class="submit-ripple"></div>
           </button>
           
+          
+
           <div class="form-success" id="formSuccess">
             <svg viewBox="0 0 24 24">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
@@ -2794,7 +2993,7 @@
             </div>
             <div class="info-content">
               <h3>Phone</h3>
-              <a href="tel:+8801764858673">+880 1764 858673</a>
+              <a href="tel:+8801764858673">(+880) 1764 858673</a>
             </div>
           </div>
           
@@ -2806,26 +3005,34 @@
             </div>
             <div class="info-content">
               <h3>Location</h3>
-              <p>Dhaka, Bangladesh - 1212</p>
+              <p>Dhaka, Bangladesh - 1229</p>
             </div>
           </div>
           
-          <div class="social-links">
-            <a href="https://github.com/ShovanMondal1910" class="social-link git" target="_blank">
-              <img src="Social Media/git.png" alt="GitHub" width="32" height="32">
+          <div class="social-links" role="navigation" aria-label="Social links">
+            <a href="https://github.com/ShovanMondal1910" class="social-link git" target="_blank" aria-label="GitHub">
+              <span class="icon-inner"><img src="GitHub.webp" alt="GitHub"></span>
             </a>
-            <a href="https://www.linkedin.com/in/shovan-mondal-krishanu" class="social-link link" target="_blank">
-              <img src="Social Media/in.png" alt="LinkedIn" width="32" height="32">
+            <a href="https://www.linkedin.com/in/shovan-mondal-krishanu" class="social-link link" target="_blank" aria-label="LinkedIn">
+              <span class="icon-inner"><img src="linkedIn.webp" alt="LinkedIn"></span>
             </a>
-            <a href="https://twitter.com/ShovanM1910" class="social-link twitter" target="_blank">
-              <img src="Social Media/X.png" alt="Twitter" width="32" height="32">
+            <a href="https://twitter.com/ShovanM1910" class="social-link twitter" target="_blank" aria-label="Twitter">
+              <span class="icon-inner"><img src="twitter.webp" alt="Twitter"></span>
             </a>
-            <a href="https://www.facebook.com/share/16jLwGyrMc/" class="social-link facebook" target="_blank">
-              <img src="Social Media/Facebook.jpg" alt="Facebook" width="32" height="32">
+            <a href="https://www.facebook.com/share/16jLwGyrMc/" class="social-link facebook" target="_blank" aria-label="Facebook">
+              <span class="icon-inner"><img src="2021_Facebook_icon.svg.webp" alt="Facebook"></span>
             </a>
-             <a href="https://instagram.com/_shovan_mondal_" class="social-link instagram" target="_blank">
-             <img src="Social Media/insta.png" alt="Instagram" width="32" height="32">
-           </a>
+            <a href="https://instagram.com/_shovan_mondal_" class="social-link instagram" target="_blank" aria-label="Instagram">
+              <span class="icon-inner"><img src="Instagram_icon.png.webp" alt="Instagram"></span>
+            </a>
+
+            <a href="https://wa.me/1976192554" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
+              <span class="icon-inner"><img src="whatsapp.webp" alt="WhatsApp"></span>
+            </a>
+
+            <a href="https://t.me/@shovanmondal19" class="social-link telegram" target="_blank" aria-label="Telegram">
+              <span class="icon-inner"><img src="telegram.webp" alt="Telegram"></span>
+            </a>
 
           </div>
         </div>
@@ -2835,7 +3042,6 @@
 </div>
 
 <style>
-  /* Contact Section Styling */
   #contact {
     background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 100%);
     padding: 80px 0;
@@ -2906,7 +3112,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
     border-top: 3px solid #00aaff;
-    height: 100%; /* Fill parent container */
+    height: 100%;
   }
   
   .contact-form:hover {
@@ -2956,7 +3162,6 @@
     transition: all 0.4s ease;
   }
   
-  /* Floating label effect */
   .form-group.floating input:focus ~ label,
   .form-group.floating input:valid ~ label,
   .form-group.floating textarea:focus ~ label,
@@ -2971,8 +3176,7 @@
   .form-group textarea:focus ~ .underline {
     width: 100%;
   }
-  
-  /* Submit button styling */
+
   .submit-btn {
     position: relative;
     display: flex;
@@ -3043,7 +3247,6 @@
     opacity: 1;
   }
   
-  /* Form success message */
   .form-success, .form-error {
     display: none;
     align-items: center;
@@ -3079,7 +3282,6 @@
     fill: #ff0000;
   }
   
-  /* Contact Info Card */
   .contact-info-container {
     flex: 1;
     min-width: 300px;
@@ -3157,69 +3359,139 @@
     color: #00aaff;
   }
   
-  /* Social Links */
   .social-links {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 40px; /* Keep margin-top to push it down */
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 4px 6px;
+    -webkit-overflow-scrolling: touch;
   }
-  
+
+  .social-links::-webkit-scrollbar { height: 8px; }
+  .social-links::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 8px; }
+  .social-links { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+
   .social-link {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 8px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+    flex: 0 0 auto;
   }
-  
-  .social-link svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-  
+
+  .social-link .icon-inner { width: 28px; height: 28px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; box-shadow: 0 6px 12px rgba(0,0,0,0.12); }
+  .social-link .icon-inner img { width: 18px; height: 18px; display:block; }
+  .social-link { opacity: 1; transform: none; animation: none; }
+  .social-link:hover, .social-link:focus { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.16); }
+
   .social-link::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #0077cc, #00aaff);
-    opacity: 0;
-    transition: all 0.3s ease;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    border-radius: 8px;
+    background: radial-gradient(closest-side, rgba(255,255,255,0.06), rgba(0,0,0,0));
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 260ms ease, transform 300ms ease;
+    opacity: 1;
+    transform: scale(0.98);
   }
-  
-  .social-link:hover::before {
+
+  .social-link::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%,-50%) scale(0.2);
+    background: radial-gradient(circle at center, rgba(0,170,255,0.35), rgba(0,170,255,0.08) 60%, transparent 65%);
+    filter: blur(6px);
+    opacity: 0;
+    z-index: 2;
+    transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
+    pointer-events: none;
+  }
+  .social-ripple {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 4;
+    transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
+  }
+
+  .social-ripple.visible {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+
+  .social-link:hover, .social-link:focus {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow: 0 12px 30px rgba(0,170,255,0.12);
+    z-index: 6;
+  }
+
+  .social-link:hover::after, .social-link:focus::after {
+    transform: translate(-50%,-50%) scale(1.8);
     opacity: 1;
   }
-  
-  .social-link:hover svg {
-    transform: scale(1.2);
+
+  .social-link:hover svg, .social-link:focus svg {
+    transform: translateY(-1px) scale(1.06) rotate(-6deg);
+  }
+
+  .social-link:active::after {
+    transform: translate(-50%,-50%) scale(2.6);
+    opacity: 0.95;
+    transition: transform 180ms ease, opacity 300ms ease;
+  }
+
+  .social-link.github { background: transparent; }
+  .social-link.linkedin { background: #0077b5; }
+  .social-link.twitter { background: #1da1f2; }
+  .social-link.facebook { background: #3b5998; }
+  .social-link.instagram { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
+
+  @keyframes socialEnter {
+    0% { opacity: 0; transform: translateY(14px) scale(0.94); }
+    60% { opacity: 1; transform: translateY(-6px) scale(1.06); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes floatSlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+
+  @media (hover: none) {
+    .social-link { transition: transform 160ms ease; }
+    .social-link .icon-inner { animation: none; }
+    .social-link:hover, .social-link:focus { transform: none; box-shadow: none; }
+    .social-link:active { transform: translateY(-4px) scale(1.04); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .social-link, .social-link .icon-inner { animation: none !important; transition: none !important; }
   }
   
-  .social-link.github {
-    background: #333;
-  }
-  
-  .social-link.linkedin {
-    background: #0077b5;
-  }
-  
-  .social-link.twitter {
-    background: #1da1f2;
-  }
-  
-  .social-link.facebook {
-    background: #3b5998;
-  }
-  
-  /* Responsive Design */
   @media (max-width: 768px) {
     .contact-title {
       font-size: 2.2rem;
@@ -3247,8 +3519,42 @@
 
     .contact-form-container,
     .contact-info-container {
-        height: auto; /* Allow height to adjust on smaller screens */
+        height: auto;
     }
+
+    #about { padding: 60px 0; }
+    .about-container { flex-direction: column; gap: 30px; padding: 0 16px; }
+    .image-wrapper { width: 220px; height: 220px; }
+    .profile-photo { border-radius: 12px; }
+    .tech-orbit { display: none; }
+
+    .action-btn { width: 100%; padding: 14px; border-radius: 12px; justify-content: center; }
+    nav { position: fixed; top: 0; right: 0; padding: 16px; z-index: 10000; }
+    nav ul { display: none; } /* Hide regular menu on mobile */
+    
+    /* Make the mobile menu cover the screen for usability */
+    nav.open {
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      display: block;
+      background: linear-gradient(180deg, rgba(10,10,20,0.98) 0%, rgba(10,10,20,0.96) 100%);
+    }
+  nav.open ul { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; position: relative; right: auto; top: auto; background: linear-gradient(180deg, rgba(10,10,20,0.98) 0%, rgba(10,10,20,0.96) 100%); padding: 40px 20px; margin: 0; box-sizing: border-box; overflow-y: auto; }
+  nav.open ul li { display: block; margin: 18px 0; font-size: 1.1rem; }
+  nav.open ul li a { color: #ffffff; padding: 12px 18px; display: inline-block; }
+  nav.open .nav-toggle { position: absolute; right: 16px; top: 16px; z-index: 10000; }
+  /* prevent body scroll while nav is open */
+  body.no-scroll { overflow: hidden; height: 100vh; }
+  }
+  
+  /* Respect user reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .particles, .tech-orbit { display: none !important; }
   }
 </style>
 
@@ -3264,14 +3570,18 @@
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Hide previous messages
-        formSuccess.style.display = 'none';
-        formError.style.display = 'none';
+        // Hide previous messages (guarded)
+        if (formSuccess) formSuccess.style.display = 'none';
+        if (formError) formError.style.display = 'none';
         
-        // Disable button and show loading state
-        submitBtn.disabled = true;
-        submitBtn.querySelector('span').textContent = 'SENDING...';
-        submitBtn.querySelector('.submit-icon').style.display = 'none'; // Hide icon during loading
+        // Disable button and show loading state (guarded)
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          const s = submitBtn.querySelector('span');
+          if (s) s.textContent = 'SENDING...';
+          const icon = submitBtn.querySelector('.submit-icon');
+          if (icon) icon.style.display = 'none'; // Hide icon during loading
+        }
 
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
@@ -3291,19 +3601,23 @@
           }, 2000)); // Simulate 2-second network delay
 
           if (response.status === 200) {
-            formSuccess.style.display = 'flex';
+            if (formSuccess) formSuccess.style.display = 'flex';
             contactForm.reset(); // Clear form fields on success
           } else {
-            formError.style.display = 'flex';
+            if (formError) formError.style.display = 'flex';
           }
         } catch (error) {
           console.error('Error submitting form:', error);
           formError.style.display = 'flex';
         } finally {
-          // Re-enable button and restore original text/icon
-          submitBtn.disabled = false;
-          submitBtn.querySelector('span').textContent = 'SEND MESSAGE';
-          submitBtn.querySelector('.submit-icon').style.display = 'block'; // Show icon again
+          // Re-enable button and restore original text/icon (guarded)
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            const s2 = submitBtn.querySelector('span');
+            if (s2) s2.textContent = 'SEND MESSAGE';
+            const icon2 = submitBtn.querySelector('.submit-icon');
+            if (icon2) icon2.style.display = 'block'; // Show icon again
+          }
 
           // Hide messages after 5 seconds
           setTimeout(() => {
