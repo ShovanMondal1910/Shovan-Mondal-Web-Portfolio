@@ -731,7 +731,7 @@ body {
   
   .experience-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 255, 0, 0.3); /* Changed to yellow shadow */
+    box-shadow: 0 0 18px 4px rgba(220, 200, 80, 0.55), 0 10px 30px rgba(0,0,0,0.4);
     background: rgba(22, 33, 62, 0.9);
   }
   
@@ -1184,7 +1184,7 @@ body {
   
   .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2); /* Changed to green shadow */
+    box-shadow: 0 0 18px 4px rgba(220, 200, 80, 0.55), 0 10px 30px rgba(0,0,0,0.4);
     background: rgba(22, 33, 62, 0.9);
   }
   
@@ -1273,7 +1273,7 @@ body {
     
     .project-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 191, 255, 0.4); /* Changed to sky blue shadow */
+        box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
     }
     
     .project-content {
@@ -1457,8 +1457,8 @@ body {
     }
 
     .blog-post-card:hover {
-      transform: translateY(-10px) scale(1.03); /* Added scale for animated big effect */
-      box-shadow: 0 15px 30px rgba(255, 255, 0, 0.4); /* Changed to yellow shadow */
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
     }
 
     .blog-post-card h3 {
@@ -1560,7 +1560,7 @@ body {
 
     .certification-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 191, 255, 0.4);
+      box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
     }
 
     .certification-card h3 {
@@ -1582,17 +1582,101 @@ body {
       margin-bottom: 1.5rem;
     }
 
+    /* ── Animated rectangular-border "View Certificate" button ── */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
     .view-credential-btn {
-      display: inline-block;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 10px;
+      align-self: flex-start;   /* stop it stretching full card width */
       color: #00aaff;
       text-decoration: none;
       font-weight: 600;
-      transition: all 0.3s ease;
+      font-size: 0.6rem;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      background: rgba(0, 170, 255, 0.04);
+      z-index: 0;
+      transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease,
+                  box-shadow 0.25s ease;
+      animation: textPulse 5s ease-in-out infinite;
+    }
+
+    .view-credential-btn .btn-arrow {
+      font-size: 0.55rem;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+
+    .view-credential-btn:hover .btn-arrow {
+      transform: translateX(3px);
+    }
+
+    /* spinning conic border */
+    .view-credential-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--angle),
+        #003d66 0deg,
+        #00aaff 60deg,
+        #00e5ff 90deg,
+        #00aaff 120deg,
+        #003d66 180deg,
+        #00aaff 240deg,
+        #00e5ff 270deg,
+        #00aaff 300deg,
+        #003d66 360deg
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      animation: spinBorder 6s linear infinite;
+    }
+
+    /* glow layer */
+    .view-credential-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      background: transparent;
+      transition: box-shadow 0.3s ease;
+      pointer-events: none;
     }
 
     .view-credential-btn:hover {
-      color: #00ccff;
-      transform: translateX(5px);
+      color: #00e5ff;
+      background: rgba(0, 170, 255, 0.1);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 3px 14px rgba(0, 170, 255, 0.35);
+    }
+
+    .view-credential-btn:hover::before {
+      animation: spinBorder 3.5s linear infinite;
+    }
+
+    @keyframes spinBorder {
+      to { --angle: 360deg; }
+    }
+
+    @keyframes textPulse {
+      0%, 100% { text-shadow: 0 0 4px rgba(0,170,255,0.4); }
+      50%       { text-shadow: 0 0 10px rgba(0,220,255,0.9), 0 0 20px rgba(0,170,255,0.4); }
     }
 
 /* Style Block 10 */
@@ -1645,7 +1729,7 @@ body {
 
     .volunteer-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(255, 224, 102, 0.4); /* Changed to yellow shadow */
+      box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
     }
 
     .volunteer-card h3 {
@@ -1754,7 +1838,7 @@ body {
 
     .testimonial-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(255, 121, 0, 0.4); /* Changed to orange shadow */
+      box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
     }
 
     .testimonial-text {
@@ -2337,3 +2421,423 @@ body {
     * { animation: none !important; transition: none !important; }
     .particles, .tech-orbit { display: none !important; }
   }
+
+
+/* ============================================================
+   Style Block 13 — Achievements / Awards  (minimal, matches Testimonials style)
+   ============================================================ */
+#achievements {
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.achievements-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.achievements-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #00aaff 30%, #00e5ff 50%, #00aaff 70%, transparent);
+  background-size: 200% 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.5s ease;
+}
+
+.achievements-title:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+  animation: titleShimmer 2s ease-in-out infinite;
+}
+
+.achievements-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.achievement-card {
+  background: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 350px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.achievement-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.achievement-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.achievement-card:nth-child(1) { transition-delay: 0.05s; }
+.achievement-card:nth-child(2) { transition-delay: 0.15s; }
+.achievement-card:nth-child(3) { transition-delay: 0.25s; }
+.achievement-card:nth-child(4) { transition-delay: 0.35s; }
+
+.achievement-card h3 {
+  color: #cccccc;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.achievement-meta {
+  display: block;
+  color: #00aaff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: right;
+  margin-top: auto;
+}
+
+.achievement-card p {
+  color: #cccccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0 0 1.5rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 600px) {
+  .achievement-card { width: 100%; }
+}
+
+
+/* ============================================================
+   Style Block 14 — Publications / Research  (minimal, matches Testimonials style)
+   ============================================================ */
+#publications {
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.publications-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.publications-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #00aaff 30%, #00e5ff 50%, #00aaff 70%, transparent);
+  background-size: 200% 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.5s ease;
+}
+
+.publications-title:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+  animation: titleShimmer 2s ease-in-out infinite;
+}
+
+.publications-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.publication-card {
+  background: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 350px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.publication-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.publication-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.publication-card:nth-child(1) { transition-delay: 0.05s; }
+.publication-card:nth-child(2) { transition-delay: 0.18s; }
+.publication-card:nth-child(3) { transition-delay: 0.31s; }
+
+.pub-type-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1e90ff;
+  margin-bottom: 0.6rem;
+}
+
+.pub-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  line-height: 1.45;
+}
+
+.pub-authors {
+  color: #1e90ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+}
+
+.pub-venue {
+  color: #888;
+  font-size: 0.82rem;
+  margin: 0 0 0.8rem;
+  font-style: italic;
+}
+
+.pub-abstract {
+  color: #b0b0c0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+
+.pub-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.pub-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #1e90ff;
+  transition: color 0.2s ease;
+}
+
+.pub-link:hover {
+  color: #ffffff;
+}
+
+.pub-link.secondary {
+  color: #888;
+}
+
+.pub-link.secondary:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .publication-card { padding: 1.2rem; }
+}
+
+
+/* ============================================================
+   Style Block 15 — FAQ  (minimal, matches Testimonials style)
+   ============================================================ */
+#faq {
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.faq-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.faq-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #00aaff 30%, #00e5ff 50%, #00aaff 70%, transparent);
+  background-size: 200% 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.5s ease;
+}
+
+.faq-title:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+  animation: titleShimmer 2s ease-in-out infinite;
+}
+
+/* ── shared keyframes for the three section title underlines ── */
+@keyframes titleShimmer {
+  0%   { background-position: 100% 0; }
+  50%  { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.faq-container {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.faq-item {
+  background: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
+  transform: translateY(-3px);
+}
+
+.faq-item.open {
+  box-shadow: 0 0 22px 5px rgba(220, 200, 80, 0.55), 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  gap: 1rem;
+  transition: color 0.2s ease;
+  font-family: inherit;
+}
+
+.faq-question:hover {
+  color: #1e90ff;
+}
+
+.faq-item.open .faq-question {
+  color: #1e90ff;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1;
+  transition: transform 0.3s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  color: #1e90ff;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.38s ease, padding 0.25s ease;
+  padding: 0 1.4rem;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 1.4rem 1.1rem;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: #b0b0c0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 0.8rem;
+}
+
+.faq-answer a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.faq-answer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .faq-question { font-size: 0.88rem; padding: 0.9rem 1rem; }
+  .faq-answer { padding: 0 1rem; }
+  .faq-item.open .faq-answer { padding: 0 1rem 1rem; }
+}
