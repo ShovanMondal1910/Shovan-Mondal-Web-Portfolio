@@ -634,6 +634,60 @@
           <h3>Docker</h3>
         </div>
       </div>
+
+      <div class="skill-card matlab-card" data-skill="MATLAB">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB">
+        </div>
+        <div class="skill-info">
+          <h3>MATLAB</h3>
+        </div>
+      </div>
+
+      <div class="skill-card linux-card" data-skill="Linux">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+        </div>
+        <div class="skill-info">
+          <h3>Linux</h3>
+        </div>
+      </div>
+
+      <div class="skill-card postman-card" data-skill="Postman">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+        </div>
+        <div class="skill-info">
+          <h3>Postman</h3>
+        </div>
+      </div>
+
+      <div class="skill-card vscode-card" data-skill="VSCode">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+        </div>
+        <div class="skill-info">
+          <h3>VS Code</h3>
+        </div>
+      </div>
+
+      <div class="skill-card figma-card" data-skill="Figma">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+        </div>
+        <div class="skill-info">
+          <h3>Figma</h3>
+        </div>
+      </div>
+
+      <div class="skill-card postgresql-card" data-skill="PostgreSQL">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+        </div>
+        <div class="skill-info">
+          <h3>PostgreSQL</h3>
+        </div>
+      </div>
       <!-- End of New Skills -->
       <!-- Duplicated set of skill cards for seamless loop -->
       <div class="skill-card js-card" data-skill="JavaScript">
@@ -840,6 +894,60 @@
         </div>
         <div class="skill-info">
           <h3>Docker</h3>
+        </div>
+      </div>
+
+      <div class="skill-card matlab-card" data-skill="MATLAB">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB">
+        </div>
+        <div class="skill-info">
+          <h3>MATLAB</h3>
+        </div>
+      </div>
+
+      <div class="skill-card linux-card" data-skill="Linux">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+        </div>
+        <div class="skill-info">
+          <h3>Linux</h3>
+        </div>
+      </div>
+
+      <div class="skill-card postman-card" data-skill="Postman">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+        </div>
+        <div class="skill-info">
+          <h3>Postman</h3>
+        </div>
+      </div>
+
+      <div class="skill-card vscode-card" data-skill="VSCode">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+        </div>
+        <div class="skill-info">
+          <h3>VS Code</h3>
+        </div>
+      </div>
+
+      <div class="skill-card figma-card" data-skill="Figma">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+        </div>
+        <div class="skill-info">
+          <h3>Figma</h3>
+        </div>
+      </div>
+
+      <div class="skill-card postgresql-card" data-skill="PostgreSQL">
+        <div class="skill-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+        </div>
+        <div class="skill-info">
+          <h3>PostgreSQL</h3>
         </div>
       </div>
       <!-- End of New Skills -->
@@ -1322,8 +1430,8 @@
           });
         });
 
-        // Scroll-reveal for achievement & publication cards
-        const revealEls = document.querySelectorAll('.achievement-card, .publication-card');
+        // Scroll-reveal for achievement, publication & faq cards
+        const revealEls = document.querySelectorAll('.achievement-card, .publication-card, .faq-item');
         const revealObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -1573,7 +1681,7 @@
     
     contactItems.forEach(item => {
       item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
+      item.style.transform = 'translateY(-30px)';
       item.style.transition = 'all 0.6s ease';
       observer.observe(item);
     });
