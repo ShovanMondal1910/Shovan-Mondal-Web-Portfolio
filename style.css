@@ -13,23 +13,91 @@ body {
     img, video { max-width: 100%; height: auto; display: block; }
     nav {
       width: 100%;
-      background: linear-gradient(90deg, #1a1a2e, #16213e);
-      padding: 10px 0;
+      background: rgba(10, 14, 35, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 0;
       text-align: center;
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 9000;
+      border-bottom: 1px solid rgba(0, 170, 255, 0.15);
+      box-shadow: 0 2px 30px rgba(0, 119, 204, 0.15);
     }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 5%;
+      width: 90%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #0077cc, #00aaff, #00ccff, #0077cc, transparent);
+      background-size: 200% 100%;
+      animation: navLineShimmer 4s linear infinite;
+    }
+
+    @keyframes navLineShimmer {
+      0%   { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
+    }
+
     nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
     }
     nav ul li {
-      display: inline;
-      margin: 0 15px;
+      display: inline-flex;
+      margin: 0;
     }
     nav ul li a {
-      color: #00aaff;
+      color: #8ab8d4;
       text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 14px 14px;
+      display: inline-block;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #0077cc, #00aaff);
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform-origin: center;
+    }
+
+    nav ul li a:hover {
+      color: #00ccff;
+      text-shadow: 0 0 10px rgba(0, 170, 255, 0.6);
+    }
+
+    nav ul li a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    nav ul li a.active {
+      color: #00aaff;
+    }
+
+    nav ul li a.active::after {
+      transform: translateX(-50%) scaleX(1);
+      background: linear-gradient(90deg, #00aaff, #00ccff);
     }
 
   /* Hamburger toggle (hidden on desktop/laptop, shown on mobile) */
@@ -113,6 +181,17 @@ body {
     background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 50%, #16213e 100%);
     position: relative;
     overflow: hidden;
+  }
+
+  /* Spider web canvas */
+  #spider-web-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
   }
   
   .particles {
@@ -1136,19 +1215,19 @@ body {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    width: 100%;
   }
   
   .education-title::after {
     content: '';
     position: absolute;
-    width: 70%;
+    width: 100px;
     height: 3px;
     background: linear-gradient(90deg, #0077cc, #00aaff);
     bottom: -10px;
-    left: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 3px;
   }
   
@@ -2469,26 +2548,25 @@ body {
   font-weight: 700;
   margin-bottom: 3rem;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 100%;
 }
 
 .achievements-title::after {
   content: '';
   position: absolute;
-  width: 70%;
+  width: 100px;
   height: 4px;
   bottom: -10px;
-  left: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(90deg, #0077cc, #00aaff);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.5s ease;
+  border-radius: 2px;
+  transition: width 0.5s ease;
 }
 
 .achievements-title:hover::after {
-  transform: scaleX(1);
+  width: 160px;
 }
 
 .achievements-container {
@@ -2578,26 +2656,25 @@ body {
   font-weight: 700;
   margin-bottom: 3rem;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 100%;
 }
 
 .publications-title::after {
   content: '';
   position: absolute;
-  width: 70%;
+  width: 100px;
   height: 4px;
   bottom: -10px;
-  left: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(90deg, #0077cc, #00aaff);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.5s ease;
+  border-radius: 2px;
+  transition: width 0.5s ease;
 }
 
 .publications-title:hover::after {
-  transform: scaleX(1);
+  width: 160px;
 }
 
 .publications-container {
@@ -2724,26 +2801,25 @@ body {
   font-weight: 700;
   margin-bottom: 3rem;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  width: 100%;
 }
 
 .faq-title::after {
   content: '';
   position: absolute;
-  width: 70%;
+  width: 100px;
   height: 4px;
   bottom: -10px;
-  left: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(90deg, #0077cc, #00aaff);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.5s ease;
+  border-radius: 2px;
+  transition: width 0.5s ease;
 }
 
 .faq-title:hover::after {
-  transform: scaleX(1);
+  width: 160px;
 }
 
 
@@ -2869,4 +2945,386 @@ body {
   .faq-question { font-size: 0.88rem; padding: 0.9rem 1rem; }
   .faq-answer { padding: 0 1rem; }
   .faq-item.open .faq-answer { padding: 0 1rem 1rem; }
+}
+
+/* ============================================================
+   Scrollbar — dark track, gold thumb
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3a3a3a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0077cc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00aaff;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0077cc #3a3a3a;
+}
+
+/* ============================================================
+   Custom Cursor — gold dot + lagging ring
+   ============================================================ */
+* { cursor: none !important; }
+
+#cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px;
+  height: 8px;
+  background: #00aaff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease, background 0.2s ease;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #0077cc;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+/* Expand ring on hovering links/buttons */
+body.cursor-hover #cursor-ring {
+  width: 54px;
+  height: 54px;
+  border-color: #00ccff;
+}
+
+body.cursor-hover #cursor-dot {
+  background: #00ccff;
+}
+
+
+/* ============================================================
+   GLOBAL MICRO-ANIMATIONS  (added June 2026)
+   ============================================================ */
+
+/* ── Scroll-reveal base state ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger helpers */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── Section headings: slide-in underline on enter ── */
+.experience-title,
+.skills-title,
+.education-title,
+.achievements-title,
+.publications-title,
+.faq-title {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.experience-title.in-view,
+.skills-title.in-view,
+.education-title.in-view,
+.achievements-title.in-view,
+.publications-title.in-view,
+.faq-title.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Timeline dots: pulse ring ── */
+.timeline-dot {
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 4px #00aaff; }
+  50%       { box-shadow: 0 0 0 8px rgba(0,170,255,0.25); }
+}
+
+/* ── Education timeline: slide-in from left already handled,
+      but add a glow pop when visible ── */
+.timeline-item.visible .timeline-dot {
+  animation: dotPulse 2.4s ease-in-out infinite, dotPop 0.45s ease forwards;
+}
+@keyframes dotPop {
+  from { transform: scale(0.4); }
+  to   { transform: scale(1);   }
+}
+
+/* ── Experience item: fade + slide from side ── */
+.experience-item {
+  transform: translateY(30px);
+}
+.experience-item.visible {
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* ── Skill tags / experience tags: shimmer on hover ── */
+.experience-tags span,
+.project-tags .tag,
+.volunteer-tags .tag {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease;
+}
+.experience-tags span:hover,
+.project-tags .tag:hover,
+.volunteer-tags .tag:hover {
+  transform: translateY(-2px) scale(1.08);
+  background: rgba(0,170,255,0.35);
+  color: #fff;
+}
+.experience-tags span::after,
+.project-tags .tag::after,
+.volunteer-tags .tag::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.experience-tags span:hover::after,
+.project-tags .tag:hover::after,
+.volunteer-tags .tag:hover::after {
+  left: 125%;
+  transition: left 0.45s ease;
+}
+
+/* ── Project cards: entrance from bottom ── */
+.project-card {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ── Blog / certification / volunteer / testimonial cards: entrance ── */
+.blog-post-card,
+.certification-card,
+.volunteer-card,
+.testimonial-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              box-shadow 0.3s ease;
+}
+.certification-card.in-view,
+.testimonial-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Achievement cards: pop-in ── */
+.achievement-card {
+  opacity: 0;
+  transform: scale(0.93) translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.achievement-card.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+/* left border glow on hover */
+.achievement-card {
+  border-left: 3px solid #00aaff;
+  transition: opacity 0.45s ease, transform 0.45s ease,
+              box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.achievement-card:hover {
+  border-color: #00ccff;
+  box-shadow: 0 0 18px rgba(0,204,255,0.35), 0 8px 24px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
+}
+
+/* ── Publication cards: slide from right ── */
+.publication-card {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.publication-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* subtle top-border glow */
+.publication-card {
+  border-top: 3px solid #0077cc;
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.publication-card:hover {
+  border-color: #00aaff;
+  box-shadow: 0 0 20px rgba(0,170,255,0.3), 0 10px 28px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
+}
+
+/* ── pub-type-badge: bounce in ── */
+.pub-type-badge {
+  display: inline-block;
+  animation: badgeBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  animation-play-state: paused;
+}
+.publication-card.visible .pub-type-badge {
+  animation-play-state: running;
+}
+@keyframes badgeBounce {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── FAQ items: slide-in from left ── */
+.faq-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.faq-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* icon spin when open */
+.faq-item.open .faq-icon {
+  display: inline-block;
+  animation: iconSpin 0.3s ease forwards;
+}
+@keyframes iconSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(135deg); }
+}
+
+/* ── Contact info items: already handled inline,
+      add a subtle icon spin on hover ── */
+.info-item:hover .info-icon {
+  animation: iconWiggle 0.5s ease;
+}
+@keyframes iconWiggle {
+  0%,100% { transform: rotate(0deg);  }
+  25%      { transform: rotate(-12deg); }
+  75%      { transform: rotate(12deg);  }
+}
+
+/* ── Social links: pop-in stagger ── */
+.social-link {
+  animation: socialPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.social-link:nth-child(1)  { animation-delay: 0.05s; }
+.social-link:nth-child(2)  { animation-delay: 0.10s; }
+.social-link:nth-child(3)  { animation-delay: 0.15s; }
+.social-link:nth-child(4)  { animation-delay: 0.20s; }
+.social-link:nth-child(5)  { animation-delay: 0.25s; }
+.social-link:nth-child(6)  { animation-delay: 0.30s; }
+.social-link:nth-child(7)  { animation-delay: 0.35s; }
+.social-link:nth-child(8)  { animation-delay: 0.40s; }
+.social-link:nth-child(9)  { animation-delay: 0.45s; }
+@keyframes socialPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Submit button: shimmer sweep ── */
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.submit-btn:hover::after {
+  left: 150%;
+  transition: left 0.5s ease;
+}
+
+/* ── Nav links: letter-spacing micro-animation ── */
+nav ul li a {
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, letter-spacing 0.25s ease;
+}
+nav ul li a:hover {
+  letter-spacing: 1.5px;
+}
+
+/* ── Profile badge: entrance ── */
+.profile-badge span {
+  opacity: 0;
+  animation: badgeSlideUp 0.6s ease forwards;
+}
+.profile-badge span:nth-child(1) { animation-delay: 0.8s; }
+.profile-badge span:nth-child(2) { animation-delay: 1.0s; }
+@keyframes badgeSlideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(14px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0);    }
+}
+
+/* ── Stat numbers: subtle scale pop when visible ── */
+.stat-item {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#about.visible .stat-item:nth-child(1) { opacity:1; transform:scale(1); transition-delay:0.1s; }
+#about.visible .stat-item:nth-child(2) { opacity:1; transform:scale(1); transition-delay:0.25s; }
+#about.visible .stat-item:nth-child(3) { opacity:1; transform:scale(1); transition-delay:0.4s; }
+
+/* ── Timeline content: left-border grow ── */
+.timeline-content {
+  border-left: 3px solid #00aaff;
+  background-clip: padding-box;
+}
+.timeline-item.visible .timeline-content {
+  animation: borderGrow 0.6s ease forwards;
+}
+@keyframes borderGrow {
+  from { border-left-color: transparent; }
+  to   { border-left-color: #00aaff; }
+}
+
+/* ── Testimonial card: fade-in when scrolled into view ── */
+.testimonial-card {
+  border-left: 3px solid rgba(0,170,255,0.4);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.testimonial-card:hover {
+  border-left-color: #00ccff;
+}
+
+/* ── Certification cards: in-view reveal ── */
+.certification-card {
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              box-shadow 0.3s ease;
 }

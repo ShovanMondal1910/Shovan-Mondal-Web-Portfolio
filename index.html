@@ -32,6 +32,7 @@
   </nav>
   
  <div class="section" id="about">
+  <canvas id="spider-web-canvas"></canvas>
   <div class="particles" id="particles-js"></div>
   <div class="about-container">
     <!-- Animated Profile Card -->
@@ -131,6 +132,131 @@
 </div>
 
 
+
+<!-- Spider Web Canvas Script -->
+<script>
+(function () {
+  const canvas = document.getElementById('spider-web-canvas');
+  const ctx = canvas.getContext('2d');
+  const about = document.getElementById('about');
+
+  let W, H, nodes, mouse = { x: -9999, y: -9999 };
+  const NODE_COUNT = 90;
+  const MAX_DIST = 140;
+  const REPEL_RADIUS = 110;
+  const REPEL_STRENGTH = 5;
+
+  function resize() {
+    const rect = about.getBoundingClientRect();
+    W = canvas.width = about.offsetWidth;
+    H = canvas.height = about.offsetHeight;
+  }
+
+  function createNodes() {
+    nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        ox: 0, oy: 0,          // will be set below
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2 + 1.5
+      });
+    }
+    nodes.forEach(n => { n.ox = n.x; n.oy = n.y; });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Move nodes
+    nodes.forEach(n => {
+      // gentle drift
+      n.x += n.vx;
+      n.y += n.vy;
+
+      // bounce off edges
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+
+      // repel from mouse
+      const dx = n.x - mouse.x;
+      const dy = n.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < REPEL_RADIUS && dist > 0) {
+        const force = (REPEL_RADIUS - dist) / REPEL_RADIUS;
+        n.x += (dx / dist) * force * REPEL_STRENGTH;
+        n.y += (dy / dist) * force * REPEL_STRENGTH;
+      }
+    });
+
+    // Draw threads
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(160, 210, 255, ${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes (dew drops)
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(180, 225, 255, 0.75)';
+      ctx.shadowColor = '#00aaff';
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  // Track mouse relative to the about section
+  function onMouseMove(e) {
+    const rect = about.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }
+
+  function onMouseLeave() {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  }
+
+  // Touch support
+  function onTouchMove(e) {
+    if (e.touches.length) {
+      const rect = about.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - rect.left;
+      mouse.y = e.touches[0].clientY - rect.top;
+    }
+  }
+
+  about.addEventListener('mousemove', onMouseMove);
+  about.addEventListener('mouseleave', onMouseLeave);
+  about.addEventListener('touchmove', onTouchMove, { passive: true });
+  about.addEventListener('touchend', onMouseLeave);
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+
+  resize();
+  createNodes();
+  draw();
+})();
+</script>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
@@ -274,6 +400,46 @@
           document.body.classList.remove('no-scroll');
         }
       });
+    });
+  })();
+</script>
+
+<script>
+  // Smooth scroll + active nav highlight
+  (function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      const nav      = document.querySelector('nav');
+      const navLinks = document.querySelectorAll('nav ul li a');
+      const sections = Array.from(navLinks)
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+      // ── Smooth animated scroll on click ──
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+
+          const navHeight = nav.getBoundingClientRect().height;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        });
+      });
+
+      // ── Highlight active section on scroll ──
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(a => a.classList.remove('active'));
+            const active = document.querySelector('nav ul li a[href="#' + entry.target.id + '"]');
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(s => observer.observe(s));
     });
   })();
 </script>
@@ -1686,6 +1852,124 @@
       observer.observe(item);
     });
   });
+</script>
+
+<!-- ── Micro-animation scroll observer ── -->
+<script>
+(function () {
+  'use strict';
+
+  /* 1. Generic .reveal elements */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  /* 2. Section headings */
+  var headings = document.querySelectorAll(
+    '.experience-title, .skills-title, .education-title, ' +
+    '.achievements-title, .publications-title, .faq-title'
+  );
+
+  /* 3. Cards that need in-view class */
+  var inViewCards = document.querySelectorAll(
+    '.certification-card, .testimonial-card, .blog-post-card'
+  );
+
+  /* 4. Publication cards (already get .visible from existing observer,
+        but pub-type-badge needs .visible on the card — handled by existing observer) */
+
+  /* helper: create observer */
+  function makeObserver(els, className, threshold) {
+    if (!els.length) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(className);
+          obs.unobserve(entry.target); /* fire once */
+        }
+      });
+    }, { threshold: threshold || 0.12 });
+    els.forEach(function (el) { obs.observe(el); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    makeObserver(revealEls,   'in-view', 0.12);
+    makeObserver(headings,    'in-view', 0.3);
+    makeObserver(inViewCards, 'in-view', 0.12);
+
+    /* stagger certification cards */
+    var certCards = document.querySelectorAll('.certification-card');
+    certCards.forEach(function (card, i) {
+      card.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    /* stagger testimonial cards */
+    var testCards = document.querySelectorAll('.testimonial-card');
+    testCards.forEach(function (card, i) {
+      card.style.transitionDelay = (i * 0.15) + 's';
+    });
+
+    /* stagger blog cards */
+    var blogCards = document.querySelectorAll('.blog-post-card');
+    blogCards.forEach(function (card, i) {
+      card.style.transitionDelay = (i * 0.12) + 's';
+    });
+  });
+})();
+</script>
+
+<!-- Custom Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<script>
+  (function () {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+
+    let mouseX = 0, mouseY = 0;
+    let ringX  = 0, ringY  = 0;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Dot follows instantly
+      dot.style.left = mouseX + 'px';
+      dot.style.top  = mouseY + 'px';
+    });
+
+    // Ring lags behind with lerp
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top  = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Expand ring when hovering interactive elements
+    const interactives = 'a, button, input, textarea, select, label, [role="button"]';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest(interactives)) {
+        document.body.classList.add('cursor-hover');
+      }
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest(interactives)) {
+        document.body.classList.remove('cursor-hover');
+      }
+    });
+
+    // Hide cursors when mouse leaves window
+    document.addEventListener('mouseleave', function () {
+      dot.style.opacity  = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function () {
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    });
+  })();
 </script>
 
 </body>
