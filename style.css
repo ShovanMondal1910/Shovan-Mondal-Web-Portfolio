@@ -1,4 +1,4 @@
-﻿/* Style Block 1 */
+/* Style Block 1 */
 body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -334,9 +334,9 @@ body {
   /* Content Styles */
   .profile-content {
     flex: 1;
-    opacity: 0;
-    transform: translateX(80px);
-    transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
   
   .section-title {
@@ -354,8 +354,8 @@ body {
   
   .title-word {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: translateY(0);
   }
   
   .typing-container {
@@ -624,7 +624,11 @@ body {
     
     .profile-content {
       text-align: center;
-      transform: translateY(50px);
+      transform: translateY(0);
+    }
+    
+    #about.visible .profile-content {
+      transform: translateY(0);
     }
     
     .profile-text p::before {
@@ -3328,3 +3332,57 @@ nav ul li a:hover {
   transition: opacity 0.5s ease, transform 0.5s ease,
               box-shadow 0.3s ease;
 }
+
+/* ── Back to Top Floating Button ── */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  background: rgba(10, 16, 30, 0.85);
+  color: #00aaff;
+  border: 1.5px solid rgba(0, 170, 255, 0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 12px rgba(0, 170, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  background: #00aaff;
+  color: #0a0a14;
+  border-color: #00aaff;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(0, 170, 255, 0.45);
+}
+
+/* ── Hamburger Animated to Close 'X' ── */
+nav.open .nav-toggle .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+nav.open .nav-toggle .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+nav.open .nav-toggle .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
