@@ -232,10 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!typingText) return;
 
     const professions = [
-      'Web Developer',
-      'UI/UX Designer',
-      'DevOps Engineer',
-      'Problem Solver'
+      'Web Developer & Problem Solver',
+      'Full-Stack Engineer',
+      'UI/UX & Frontend Developer',
+      'Competitive Programmer'
     ];
     let professionIndex = 0;
     let charIndex = 0;
@@ -357,15 +357,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==================================================================
      6. MOBILE NAVIGATION DRAWER & ACCESSIBLE TOGGLES
      ================================================================== */
-  (function initMobileNav() {
-    const nav = document.querySelector('nav');
+  /* ==================================================================
+     6. MOBILE NAVIGATION DRAWER, DROPDOWN & NAVBAR SCROLL
+     ================================================================== */
+  (function initNavbarControls() {
+    const nav = document.querySelector('nav') || document.querySelector('.navbar');
     const toggle = document.querySelector('.nav-toggle');
+    const dropdown = document.getElementById('navDropdown');
+    const dropdownToggle = dropdown ? dropdown.querySelector('.dropdown-toggle') : null;
+
+    // Navbar compact/glow state on scroll
+    window.addEventListener('scroll', () => {
+      if (nav) {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      }
+    }, { passive: true });
+
+    // Handle 'More' dropdown toggle
+    if (dropdown && dropdownToggle) {
+      dropdownToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
     if (!nav || !toggle) return;
 
     function closeNav() {
       nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('no-scroll');
+      if (dropdown) {
+        dropdown.classList.remove('open');
+      }
     }
 
     function toggleNav() {
@@ -395,8 +427,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close on Escape key press
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('open')) {
-        closeNav();
+      if (e.key === 'Escape') {
+        if (nav.classList.contains('open')) closeNav();
+        if (dropdown) {
+          dropdown.classList.remove('open');
+          if (dropdownToggle) dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   })();
@@ -406,29 +442,31 @@ document.addEventListener('DOMContentLoaded', () => {
      7. SMOOTH SCROLLING & ACTIVE LINK SCROLLSPY
      ================================================================== */
   (function initScrollSpy() {
-    const nav = document.querySelector('nav');
-    const navLinks = document.querySelectorAll('nav ul li a');
+    const nav = document.querySelector('nav') || document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const dropdown = document.getElementById('navDropdown');
+    const dropdownToggle = dropdown ? dropdown.querySelector('.dropdown-toggle') : null;
     if (!navLinks.length) return;
 
     const sections = Array.from(navLinks)
       .map(a => {
         const href = a.getAttribute('href');
-        return href && href.startsWith('#') ? document.querySelector(href) : null;
+        return href && href.startsWith('#') && href.length > 1 ? document.querySelector(href) : null;
       })
-      .filter(Boolean);
+      .filter((sec, idx, self) => sec && self.indexOf(sec) === idx);
 
     // Smooth scroll on link click with dynamic navbar offset
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
-        if (!targetId || !targetId.startsWith('#')) return;
+        if (!targetId || !targetId.startsWith('#') || targetId === '#') return;
 
         const target = document.querySelector(targetId);
         if (!target) return;
 
         e.preventDefault();
         const navHeight = nav ? nav.getBoundingClientRect().height : 70;
-        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 10;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 6;
 
         window.scrollTo({
           top: targetTop,
@@ -442,14 +480,23 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const currentId = entry.target.id;
+          let dropdownActive = false;
+
           navLinks.forEach(a => {
             const isMatch = a.getAttribute('href') === `#${currentId}`;
             a.classList.toggle('active', isMatch);
+            if (isMatch && a.classList.contains('dropdown-link')) {
+              dropdownActive = true;
+            }
           });
+
+          if (dropdownToggle) {
+            dropdownToggle.classList.toggle('active', dropdownActive);
+          }
         }
       });
     }, {
-      rootMargin: '-30% 0px -60% 0px',
+      rootMargin: '-25% 0px -60% 0px',
       threshold: 0
     });
 
@@ -850,6 +897,62 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = '';
       });
     });
+  })();
+
+
+  /* ==================================================================
+     14.5. CYBERPUNK WORKSPACE INTERACTION (Laptop & Coffee Cup)
+     ================================================================== */
+  (function initCyberWorkspace() {
+    const stage = document.getElementById('cyberWorkspace');
+    const coffeeUnit = document.getElementById('coffeeUnit');
+    const coffeeToast = document.getElementById('coffeeToast');
+
+    const laptopUnit = document.getElementById('laptopUnit');
+
+    if (!stage) return;
+
+    // 3D Mouse Parallax Tilt
+    let isHovering = false;
+    stage.addEventListener('mouseenter', () => { isHovering = true; });
+
+    stage.addEventListener('mousemove', (e) => {
+      if (!isHovering) return;
+      const rect = stage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      
+      const tiltX = -y * 14;
+      const tiltY = x * 14;
+
+      stage.style.transform = `perspective(1200px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+    });
+
+    stage.addEventListener('mouseleave', () => {
+      isHovering = false;
+      stage.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+    });
+
+    // Coffee Cup Click Interaction
+    if (coffeeUnit && coffeeToast) {
+      coffeeUnit.addEventListener('click', () => {
+        coffeeUnit.classList.add('caffeine-burst');
+        coffeeToast.classList.add('show-toast');
+
+        // Laptop cyber boost glow
+        if (laptopUnit) {
+          laptopUnit.style.filter = 'drop-shadow(0 0 25px rgba(0, 245, 160, 0.7))';
+          setTimeout(() => {
+            laptopUnit.style.filter = '';
+          }, 1500);
+        }
+
+        setTimeout(() => {
+          coffeeUnit.classList.remove('caffeine-burst');
+          coffeeToast.classList.remove('show-toast');
+        }, 1800);
+      });
+    }
   })();
 
 
