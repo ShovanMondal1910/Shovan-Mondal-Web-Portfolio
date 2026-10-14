@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const cardItems = document.querySelectorAll(
       '.certification-card, .testimonial-card, .blog-post-card, ' +
-      '.achievement-card, .publication-card, .project-card, .skill-card'
+      '.achievement-card, .publication-card, .project-card, .skill-card, .edu-card'
     );
     const timelineItems = document.querySelectorAll('.experience-item, .timeline-item');
     const faqItems = document.querySelectorAll('.faq-item');
@@ -591,6 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    applyStagger('.edu-card', 0.12);
     applyStagger('.certification-card', 0.12);
     applyStagger('.testimonial-card', 0.14);
     applyStagger('.blog-post-card', 0.12);
@@ -808,7 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateRing();
 
     // Hover effect over interactive elements
-    const interactives = 'a, button, input, textarea, select, label, .skill-card, .project-card, [role="button"]';
+    const interactives = 'a, button, input, textarea, select, label, .skill-card, .skill-circle-card, .project-card, [role="button"]';
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest(interactives)) {
         document.body.classList.add('cursor-hover');
@@ -878,9 +879,9 @@ document.addEventListener('DOMContentLoaded', () => {
      14. SKILL CARD 3D TILT MICRO-INTERACTIONS
      ================================================================== */
   (function initSkillCardTilt() {
-    const skillCards = document.querySelectorAll('.skill-card');
+    const cards = document.querySelectorAll('.skill-card, .skill-circle-card');
 
-    skillCards.forEach(card => {
+    cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -921,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = stage.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      
+
       const tiltX = -y * 14;
       const tiltY = x * 14;
 
@@ -953,6 +954,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1800);
       });
     }
+  })();
+
+
+  /* ==================================================================
+     14.8. TECHNICAL SKILLS CATEGORY FILTER
+     ================================================================== */
+  (function initSkillsFilter() {
+    const filterButtons = document.querySelectorAll('.skills-filter-btn');
+    const cards = document.querySelectorAll('.skills-grid .skill-card');
+    const languagesStream = document.getElementById('languagesStreamSection');
+    const frameworksStream = document.getElementById('frameworksStreamSection');
+    const toolsStream = document.getElementById('toolsStreamSection');
+    if (!filterButtons.length || !cards.length) return;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        // Toggle circular streams visibility across the 3 stream tiers
+        if (languagesStream) {
+          languagesStream.style.display = (filter === 'all' || filter === 'languages') ? 'block' : 'none';
+        }
+
+        if (frameworksStream) {
+          frameworksStream.style.display = (filter === 'all' || filter === 'frontend' || filter === 'backend') ? 'block' : 'none';
+        }
+
+        if (toolsStream) {
+          toolsStream.style.display = (filter === 'all' || filter === 'databases' || filter === 'tools') ? 'block' : 'none';
+        }
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+
+
+  /* ==================================================================
+     14.9. PROJECTS CATEGORY FILTER
+     ================================================================== */
+  (function initProjectsFilter() {
+    const filterButtons = document.querySelectorAll('.project-filter-btn');
+    const cards = document.querySelectorAll('.project-card[data-category]');
+    if (!filterButtons.length || !cards.length) return;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-hidden');
+            requestAnimationFrame(() => {
+              card.classList.add('in-view');
+            });
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+
+
+  /* ==================================================================
+     14.10. PROJECTS MOBILE EXPAND TOGGLE
+     ================================================================== */
+  (function initProjectsMobileToggle() {
+    const caseHints = document.querySelectorAll('.project-case-hint');
+    if (!caseHints.length) return;
+
+    caseHints.forEach(hint => {
+      hint.addEventListener('click', () => {
+        const card = hint.closest('.project-card');
+        if (card) {
+          card.classList.toggle('is-expanded');
+        }
+      });
+    });
   })();
 
 
