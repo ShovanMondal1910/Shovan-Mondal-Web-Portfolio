@@ -1591,7 +1591,24 @@ const listActiveProducts = catchAsync(async (req, res) => {
 
 
   /* ==================================================================
-     16. CONSOLE BRANDING & WELCOME
+     16. FOOTER BACK-TO-TOP SMOOTH SCROLL
+     ================================================================== */
+  (function initFooterBackToTop() {
+    const backToTopBtn = document.getElementById('footerBackToTop');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  })();
+
+
+  /* ==================================================================
+     17. CONSOLE BRANDING & WELCOME
      ================================================================== */
   console.log(
     '%c Shovan Mondal - Web Portfolio %c Loaded Successfully 🚀 ',
