@@ -1,0 +1,16 @@
+# Netlify Redirects Configuration
+# Backward-compatibility redirects for any previously shared or cached URLs
+
+/Certificate/Art%20of%20Problem%20Definition.jpg                     /assets/certificates/art-of-problem-definition.jpg 301
+/Certificate/Excel%20Essentials%20for%20Workplace%20Producvity.jpg   /assets/certificates/excel-essentials.jpg 301
+/Certificate/Unleashing%20Cognitive%20Empowerment.jpg                /assets/certificates/cognitive-empowerment.jpg 301
+/Certificate/Workplace%20Communication%20Essentials.jpg              /assets/certificates/workplace-communication.jpg 301
+/Certificate/Online%20ICT%20Course%20for%20First-Year%20Students%20of%20Na%20onal%20University.jpg /assets/certificates/online-ict-course.jpg 301
+/Social%20Media/CV%20Shovan.pdf                                      /assets/docs/cv-shovan.pdf 301
+/Shovan.jpeg                                                         /assets/images/shovan.jpeg 301
+/Laptop.png                                                          /assets/images/laptop.png 301
+/Cofffee%20Cup.png                                                   /assets/images/coffee-cup.png 301
+/experience.png                                                      /assets/images/experience.png 301
+
+/Certificate/*                                                       /assets/certificates/:splat 301
+/Social%20Media/*                                                    /assets/docs/:splat 301

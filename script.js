@@ -769,6 +769,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==================================================================
+     11.5. ONE-CLICK CLIPBOARD COPY FOR CONTACT CHANNELS
+     ================================================================== */
+  (function initCopyButtons() {
+    const copyBtns = document.querySelectorAll('.copy-action-btn');
+    if (!copyBtns.length) return;
+
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const copyText = btn.getAttribute('data-copy-text');
+        if (!copyText) return;
+
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(copyText);
+          } else {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = copyText;
+            tempInput.style.position = 'fixed';
+            tempInput.style.left = '-9999px';
+            tempInput.style.top = '-9999px';
+            document.body.appendChild(tempInput);
+            tempInput.focus();
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+          }
+
+          btn.classList.add('copied');
+          const tooltip = btn.querySelector('.copy-tooltip');
+          const originalText = tooltip ? tooltip.textContent : 'Copy';
+          if (tooltip) tooltip.textContent = 'Copied!';
+
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            if (tooltip) tooltip.textContent = originalText;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy to clipboard:', err);
+        }
+      });
+    });
+  })();
+
+
+  /* ==================================================================
      12. CUSTOM SMOOTH LERPING CURSOR
      ================================================================== */
   (function initCustomCursor() {
@@ -816,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateRing();
 
     // Hover effect over interactive elements
-    const interactives = 'a, button, input, textarea, select, label, .skill-card, .skill-circle-card, .project-card, [role="button"]';
+    const interactives = 'a, button, input, textarea, select, label, .skill-card, .skill-circle-card, .project-card, [role="button"], .cert-preview-trigger, .cert-modal-close, .cert-modal-btn, .cert-modal-backdrop, .blog-modal-close, .blog-modal-done-btn, .blog-modal-backdrop, .copy-action-btn, .social-link';
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest(interactives)) {
         document.body.classList.add('cursor-hover');
@@ -1101,7 +1148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalHeading = document.getElementById('certModalHeading');
     const modalDate = document.getElementById('certModalDate');
     const modalFullscreenBtn = document.getElementById('certModalFullscreenBtn');
-    const modalDownloadLink = document.getElementById('certModalDownloadLink');
 
     if (!modal) return;
 
@@ -1116,7 +1162,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (modalHeading) modalHeading.textContent = title;
       if (modalDate) modalDate.textContent = date;
       if (modalFullscreenBtn) modalFullscreenBtn.href = src;
-      if (modalDownloadLink) modalDownloadLink.href = src;
 
       if (type === 'pdf') {
         if (modalImg) {
@@ -1141,6 +1186,12 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
+
+      // Ensure custom pointer dot and ring remain fully visible over modal
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (dot) dot.style.opacity = '1';
+      if (ring) ring.style.opacity = '1';
     }
 
     function closeModal() {
@@ -1450,6 +1501,12 @@ const listActiveProducts = catchAsync(async (req, res) => {
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
+
+      // Ensure custom pointer dot and ring remain fully visible over modal
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (dot) dot.style.opacity = '1';
+      if (ring) ring.style.opacity = '1';
     }
 
     function closeArticleModal() {
