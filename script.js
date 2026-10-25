@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const cardItems = document.querySelectorAll(
       '.cert-card, .certification-card, .testimonial-card, .blog-card, .blog-post-card, ' +
-      '.achievement-card, .publication-card, .project-card, .skill-card, .edu-card, .volunteer-card'
+      '.achievement-card, .publication-card, .project-card, .skill-card, .edu-card, .volunteer-card, .contact-card'
     );
     const timelineItems = document.querySelectorAll('.experience-item, .timeline-item');
     const faqItems = document.querySelectorAll('.faq-item');
@@ -599,6 +599,10 @@ document.addEventListener('DOMContentLoaded', () => {
     applyStagger('.blog-post-card', 0.12);
     applyStagger('.project-card', 0.1);
     applyStagger('.volunteer-card', 0.12);
+    applyStagger('.achievement-card', 0.12);
+    applyStagger('.publication-card', 0.14);
+    applyStagger('.faq-item', 0.08);
+    applyStagger('.contact-card', 0.14);
 
     // Contact items entrance transition
     if (contactElements.length) {
