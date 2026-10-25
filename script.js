@@ -926,6 +926,17 @@ document.addEventListener('DOMContentLoaded', () => {
         behavior: 'smooth'
       });
     });
+
+    const footerBackToTop = document.getElementById('footerBackToTop');
+    if (footerBackToTop) {
+      footerBackToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
   })();
 
 
