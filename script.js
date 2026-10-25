@@ -555,8 +555,8 @@ document.addEventListener('DOMContentLoaded', () => {
       '.achievements-title, .publications-title, .faq-title, .section-title, .contact-title'
     );
     const cardItems = document.querySelectorAll(
-      '.certification-card, .testimonial-card, .blog-post-card, ' +
-      '.achievement-card, .publication-card, .project-card, .skill-card, .edu-card'
+      '.cert-card, .certification-card, .testimonial-card, .blog-card, .blog-post-card, ' +
+      '.achievement-card, .publication-card, .project-card, .skill-card, .edu-card, .volunteer-card'
     );
     const timelineItems = document.querySelectorAll('.experience-item, .timeline-item');
     const faqItems = document.querySelectorAll('.faq-item');
@@ -592,10 +592,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     applyStagger('.edu-card', 0.12);
+    applyStagger('.cert-card', 0.12);
     applyStagger('.certification-card', 0.12);
     applyStagger('.testimonial-card', 0.14);
+    applyStagger('.blog-card', 0.12);
     applyStagger('.blog-post-card', 0.12);
     applyStagger('.project-card', 0.1);
+    applyStagger('.volunteer-card', 0.12);
 
     // Contact items entrance transition
     if (contactElements.length) {
@@ -879,7 +882,7 @@ document.addEventListener('DOMContentLoaded', () => {
      14. SKILL CARD 3D TILT MICRO-INTERACTIONS
      ================================================================== */
   (function initSkillCardTilt() {
-    const cards = document.querySelectorAll('.skill-card, .skill-circle-card');
+    const cards = document.querySelectorAll('.skill-card, .skill-circle-card, .cert-card');
 
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
@@ -1051,7 +1054,472 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==================================================================
-     15. CONSOLE BRANDING & WELCOME
+     14.11. CERTIFICATIONS CATEGORY FILTER
+     ================================================================== */
+  (function initCertificationsFilter() {
+    const filterButtons = document.querySelectorAll('.cert-filter-btn');
+    const cards = document.querySelectorAll('.cert-card[data-category]');
+    if (!filterButtons.length || !cards.length) return;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-hidden');
+            requestAnimationFrame(() => {
+              card.classList.add('in-view');
+            });
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+
+
+  /* ==================================================================
+     14.12. CERTIFICATE LIGHTBOX MODAL PREVIEW
+     ================================================================== */
+  (function initCertModal() {
+    const modal = document.getElementById('certModal');
+    const modalClose = document.getElementById('certModalClose');
+    const modalBackdrop = document.getElementById('certModalBackdrop');
+    const modalImg = document.getElementById('certModalImg');
+    const modalPdf = document.getElementById('certModalPdf');
+    const modalOrg = document.getElementById('certModalOrg');
+    const modalHeading = document.getElementById('certModalHeading');
+    const modalDate = document.getElementById('certModalDate');
+    const modalFullscreenBtn = document.getElementById('certModalFullscreenBtn');
+    const modalDownloadLink = document.getElementById('certModalDownloadLink');
+
+    if (!modal) return;
+
+    function openModal(trigger) {
+      const src = trigger.getAttribute('data-cert-src');
+      const type = trigger.getAttribute('data-cert-type') || 'image';
+      const title = trigger.getAttribute('data-cert-title') || 'Certificate';
+      const issuer = trigger.getAttribute('data-cert-issuer') || 'Verified Credential';
+      const date = trigger.getAttribute('data-cert-date') || '';
+
+      if (modalOrg) modalOrg.textContent = issuer;
+      if (modalHeading) modalHeading.textContent = title;
+      if (modalDate) modalDate.textContent = date;
+      if (modalFullscreenBtn) modalFullscreenBtn.href = src;
+      if (modalDownloadLink) modalDownloadLink.href = src;
+
+      if (type === 'pdf') {
+        if (modalImg) {
+          modalImg.classList.remove('active');
+          modalImg.src = '';
+        }
+        if (modalPdf) {
+          modalPdf.src = src;
+          modalPdf.classList.add('active');
+        }
+      } else {
+        if (modalPdf) {
+          modalPdf.classList.remove('active');
+          modalPdf.src = '';
+        }
+        if (modalImg) {
+          modalImg.src = src;
+          modalImg.classList.add('active');
+        }
+      }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      setTimeout(() => {
+        if (modalImg) modalImg.src = '';
+        if (modalPdf) modalPdf.src = '';
+      }, 300);
+    }
+
+    // Attach click listeners to all preview triggers (buttons and thumbnail banners)
+    const triggers = document.querySelectorAll('.cert-preview-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(trigger);
+      });
+      // Keyboard accessible
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(trigger);
+        }
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  })();
+
+
+  /* ==================================================================
+     14.13. BLOG & ARTICLES CATEGORY FILTER
+     ================================================================== */
+  (function initBlogFilter() {
+    const filterButtons = document.querySelectorAll('.blog-filter-btn');
+    const cards = document.querySelectorAll('.blog-card[data-category]');
+    if (!filterButtons.length || !cards.length) return;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-hidden');
+            requestAnimationFrame(() => {
+              card.classList.add('in-view');
+            });
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+
+
+  /* ==================================================================
+     14.14. BLOG ARTICLE READER MODAL (FULL ARTICLES CONTENT)
+     ================================================================== */
+  (function initBlogModal() {
+    const modal = document.getElementById('blogModal');
+    const modalClose = document.getElementById('blogModalClose');
+    const modalDoneBtn = document.getElementById('blogModalDoneBtn');
+    const modalBackdrop = document.getElementById('blogModalBackdrop');
+    const modalCategory = document.getElementById('blogModalCategory');
+    const modalDate = document.getElementById('blogModalDate');
+    const modalTime = document.getElementById('blogModalTime');
+    const modalTitle = document.getElementById('blogModalTitle');
+    const modalBody = document.getElementById('blogModalBody');
+    const modalTags = document.getElementById('blogModalTags');
+
+    if (!modal) return;
+
+    // Comprehensive Technical Article Database
+    const articlesData = {
+      'art-1': {
+        category: 'Frontend Architecture',
+        date: 'October 2024',
+        time: '6 min read',
+        title: 'Mastering Responsive UI with Fluid Typography & Modern CSS Grid',
+        tags: ['CSS Grid', 'Fluid Typography', 'clamp()', 'Subgrid', 'UI Architecture', 'Responsive Design'],
+        body: `
+          <p>For years, responsive web design revolved entirely around fixed breakpoints (<code>@media (min-width: 768px)</code>, <code>1024px</code>, <code>1280px</code>). As device aspect ratios proliferated from compact smart devices to ultra-wide 4K monitors, this breakpoint-heavy approach spawned fragile stylesheets characterized by abrupt visual jumps, jarring reflows, and endless media query overrides.</p>
+          
+          <h3>The Power of Mathematical Fluid Typography</h3>
+          <p>Modern CSS allows us to treat typography and spatial padding as continuous mathematical gradients rather than stepped discrete values. The key lies in leveraging <code>clamp(MIN, VAL, MAX)</code>:</p>
+
+          <pre class="blog-code-block"><code>/* Seamless fluid scaling without a single breakpoint */
+:root {
+  --fluid-min-width: 360;
+  --fluid-max-width: 1440;
+  
+  --fluid-h1-min: 2rem;
+  --fluid-h1-max: 3.5rem;
+  
+  /* Dynamic slope calculation: y = mx + b */
+  --h1-title: clamp(
+    2rem,
+    1.45rem + 2.45vw,
+    3.5rem
+  );
+}</code></pre>
+
+          <p>This formulation ensures text seamlessly tracks viewport expansion smoothly across every single pixel, maintaining optimal typographic line lengths (45–75 characters per line) and completely eliminating Cumulative Layout Shift (CLS) on device orientation changes.</p>
+
+          <h3>Replacing Fragile Flex Wrappers with CSS Grid <code>auto-fit</code></h3>
+          <p>Instead of manually computing percentage widths and margins for grid cards across 4 different breakpoints, CSS Grid's <code>minmax()</code> with <code>auto-fit</code> lets the browser calculate layout geometry natively:</p>
+
+          <pre class="blog-code-block"><code>.card-container {
+  display: grid;
+  /* Self-organizing responsive columns without media queries */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(16px, 2.5vw, 32px);
+}</code></pre>
+
+          <blockquote>
+            <strong>Key Engineering Takeaway:</strong> Declarative CSS mathematics shifts viewport computation directly into browser layout engines, reducing stylesheet size by up to 40% and providing a buttery-smooth viewing experience across all screen factors.
+          </blockquote>
+        `
+      },
+      'art-2': {
+        category: 'Systems & Backend',
+        date: 'September 2024',
+        time: '8 min read',
+        title: 'File I/O vs. Relational Databases: Performance Benchmarks in Java',
+        tags: ['Java', 'NIO.2', 'JDBC', 'MySQL', 'Benchmarking', 'Systems Performance'],
+        body: `
+          <p>When engineering high-throughput backend applications, choosing the right persistence mechanism is critical. In this benchmark experiment, we set out to analyze the latency, disk usage, and throughput profiles of standard Java File I/O (buffered streams and memory-mapped files) versus relational database storage via MySQL/JDBC when processing 1,000,000 operational records.</p>
+          
+          <h3>Experimental Setup & Benchmarking Methodology</h3>
+          <p>We evaluated three distinct ingestion strategies using Java 17 and OpenJDK JMH (Java Microbenchmark Harness) running on NVMe PCIe Gen4 SSDs:</p>
+          <ul>
+            <li><strong>Strategy A:</strong> Standard <code>BufferedWriter</code> with serialized text output (Append-only log).</li>
+            <li><strong>Strategy B:</strong> Java NIO.2 <code>FileChannel</code> with <code>MappedByteBuffer</code> directly memory-mapping OS kernel pages.</li>
+            <li><strong>Strategy C:</strong> MySQL 8.0 InnoDB through JDBC utilizing connection pooling (HikariCP) and multi-row batched prepared statements.</li>
+          </ul>
+
+          <pre class="blog-code-block"><code>// High-performance Java NIO.2 Memory-Mapped File write
+try (FileChannel channel = FileChannel.open(path, 
+        StandardOpenOption.READ, 
+        StandardOpenOption.WRITE, 
+        StandardOpenOption.CREATE)) {
+    
+    MappedByteBuffer buffer = channel.map(
+        FileChannel.MapMode.READ_WRITE, 0, BUFFER_SIZE);
+    
+    for (Record record : batchRecords) {
+        buffer.putLong(record.getId());
+        buffer.putDouble(record.getValue());
+        buffer.put(record.getFlags());
+    }
+}</code></pre>
+
+          <h3>Benchmark Findings & Latency Distribution</h3>
+          <ul>
+            <li><strong>Sequential Ingestion:</strong> NIO.2 Memory-Mapped files achieved a staggering <strong>820,000 records/sec</strong>, compared to 145,000 records/sec for buffered streams and 48,000 records/sec for batched JDBC insertions.</li>
+            <li><strong>Random Lookups:</strong> When querying non-sequential entries, MySQL B-Tree indexing dominated, executing indexed queries in <strong>0.8ms</strong> versus full linear scans required by raw binary files.</li>
+            <li><strong>Memory Overhead:</strong> Memory-mapped buffers leverage kernel page caching, resulting in negligible garbage collection pressure compared to ORM object instantiation.</li>
+          </ul>
+
+          <blockquote>
+            <strong>Architectural Verdict:</strong> For high-frequency append-only event streams (such as telemetry, audit logs, or financial tickers), NIO.2 memory-mapped flat files provide orders of magnitude higher throughput. For structured relational data requiring ACID transactions and ad-hoc filtered retrieval, relational engines remain indispensable.
+          </blockquote>
+        `
+      },
+      'art-3': {
+        category: 'Algorithms & Logic',
+        date: 'August 2024',
+        time: '10 min read',
+        title: 'Demystifying Dynamic Programming: From Recursion Tree to Tabulation',
+        tags: ['Dynamic Programming', 'Memoization', 'Tabulation', 'Algorithms', 'Big-O Analysis', 'Problem Solving'],
+        body: `
+          <p>Dynamic Programming (DP) is frequently cited by computer science students and engineers as one of the most challenging algorithmic concepts. However, DP is not a mystical technique—it is simply careful recursion combined with systematic state caching to eliminate redundant subproblem computation.</p>
+          
+          <h3>The Core Principles: When to Apply DP</h3>
+          <p>Any computational problem is a candidate for Dynamic Programming if and only if it exhibits two properties:</p>
+          <ol>
+            <li><strong>Optimal Substructure:</strong> The optimal solution to the global problem can be constructed from optimal solutions to its constituent subproblems.</li>
+            <li><strong>Overlapping Subproblems:</strong> The recursive tree repeatedly evaluates identical states with identical parameters.</li>
+          </ol>
+
+          <h3>Evolution of a Solution: The 3-Stage Workflow</h3>
+          <p>Rather than jumping directly to an intricate 2D table, seasoned problem solvers follow a systematic 3-step evolutionary path:</p>
+
+          <pre class="blog-code-block"><code>// Step 1: Naive Recursion — O(2^n) exponential time
+int fib(int n) {
+    if (n &lt;= 1) return n;
+    return fib(n - 1) + fib(n - 2); // Recalculates same subtrees
+}
+
+// Step 2: Top-Down Memoization — O(n) time, O(n) call stack + memo
+int fibMemo(int n, int[] memo) {
+    if (n &lt;= 1) return n;
+    if (memo[n] != 0) return memo[n];
+    return memo[n] = fibMemo(n - 1, memo) + fibMemo(n - 2, memo);
+}
+
+// Step 3: Bottom-Up Tabulation with O(1) Space Optimization
+int fibOptimal(int n) {
+    if (n &lt;= 1) return n;
+    int prev2 = 0, prev1 = 1;
+    for (int i = 2; i &lt;= n; i++) {
+        int current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+    return prev1;
+}</code></pre>
+
+          <blockquote>
+            <strong>Key Problem-Solving Mental Model:</strong> Always draw the recursive state decision tree first. Identify the minimal state variables that define a subproblem. Once memoization is verified, invert the evaluation order to build a bottom-up table, then look for opportunities to roll space forward.
+          </blockquote>
+        `
+      },
+      'art-4': {
+        category: 'Full-Stack Engineering',
+        date: 'July 2024',
+        time: '7 min read',
+        title: 'Architecting Scalable REST APIs with Node.js, Express & MongoDB',
+        tags: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'REST API', 'Scalability', 'JWT'],
+        body: `
+          <p>Building a prototype REST API with Express and MongoDB takes less than an hour. However, evolving that prototype into a resilient, production-grade microservice capable of sustaining thousands of concurrent requests requires rigorous architectural discipline.</p>
+          
+          <h3>Layered Architectural Separation of Concerns</h3>
+          <p>Tightly coupling route definitions, database queries, and business logic into monolithic controller files creates an unmaintainable codebase. In high-scale services, we enforce strict boundary separation:</p>
+          <ul>
+            <li><strong>Routes Layer:</strong> Declares endpoints, attaches authentication guards, and binds schema validators.</li>
+            <li><strong>Controller Layer:</strong> Parses HTTP requests, extracts parameters, and translates service outputs into standard JSON payloads.</li>
+            <li><strong>Service Layer:</strong> Pure business logic, authorization policies, and cross-model orchestration.</li>
+            <li><strong>Repository / Model Layer:</strong> Optimized database interactions, Mongoose schema hooks, and aggregation pipelines.</li>
+          </ul>
+
+          <pre class="blog-code-block"><code>// Centralized Async Error Boundary Middleware
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch(next);
+  };
+};
+
+// High-throughput query execution with lean projections
+const listActiveProducts = catchAsync(async (req, res) => {
+  const { page = 1, limit = 20, category } = req.query;
+  
+  const query = { status: 'published' };
+  if (category) query.category = category;
+
+  // .lean() skips heavyweight Mongoose document hydration
+  const products = await Product.find(query)
+    .select('name price slug thumbnail rating')
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(Number(limit))
+    .lean()
+    .exec();
+
+  res.status(200).json({ success: true, count: products.length, data: products });
+});</code></pre>
+
+          <h3>Critical Performance Optimizations for MongoDB</h3>
+          <p>Two simple architectural choices can yield 10x throughput improvements under heavy load:</p>
+          <ol>
+            <li><strong>Using <code>.lean()</code> for Read Operations:</strong> By instructing Mongoose to bypass the creation of virtual getters, setters, and change-tracking metadata, JSON serialization throughput triples.</li>
+            <li><strong>Targeted Compound Indexes:</strong> Creating indexes matching the exact equality, sort, and range queries (ESR rule) transforms table-scans into near-instantaneous index seeks.</li>
+          </ol>
+
+          <blockquote>
+            <strong>Production Rule:</strong> Combine stateless JWT auth with rate limiting (express-rate-limit) and Redis caching for read-heavy routes to ensure graceful scaling without overloading the primary MongoDB cluster.
+          </blockquote>
+        `
+      }
+    };
+
+    function openArticleModal(articleId) {
+      const data = articlesData[articleId];
+      if (!data) return;
+
+      if (modalCategory) modalCategory.textContent = data.category;
+      if (modalDate) modalDate.textContent = data.date;
+      if (modalTime) modalTime.textContent = data.time;
+      if (modalTitle) modalTitle.textContent = data.title;
+      if (modalBody) modalBody.innerHTML = data.body;
+
+      if (modalTags) {
+        modalTags.innerHTML = '';
+        data.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'blog-tag';
+          span.textContent = tag;
+          modalTags.appendChild(span);
+        });
+      }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeArticleModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    }
+
+    // Attach click listeners to all article triggers
+    const triggers = document.querySelectorAll('.blog-modal-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const articleId = trigger.getAttribute('data-article-id');
+        openArticleModal(articleId);
+      });
+      // Keyboard support
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const articleId = trigger.getAttribute('data-article-id');
+          openArticleModal(articleId);
+        }
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener('click', closeArticleModal);
+    if (modalDoneBtn) modalDoneBtn.addEventListener('click', closeArticleModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeArticleModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeArticleModal();
+      }
+    });
+  })();
+
+
+  /* ==================================================================
+     15. VOLUNTEER WORK & CONTRIBUTIONS CATEGORY FILTER
+     ================================================================== */
+  (function initVolunteerFilter() {
+    const filterBtns = document.querySelectorAll('.volunteer-filter-btn');
+    const cards = document.querySelectorAll('.volunteer-card');
+    if (!filterBtns.length || !cards.length) return;
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetFilter = btn.getAttribute('data-filter') || 'all';
+
+        // Update active class on filter buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (targetFilter === 'all' || category === targetFilter) {
+            card.classList.remove('is-hidden');
+            // Re-trigger reveal animation smoothly
+            requestAnimationFrame(() => {
+              card.classList.add('in-view');
+            });
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  })();
+
+
+  /* ==================================================================
+     16. CONSOLE BRANDING & WELCOME
      ================================================================== */
   console.log(
     '%c Shovan Mondal - Web Portfolio %c Loaded Successfully 🚀 ',
