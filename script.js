@@ -1721,31 +1721,11 @@ const listActiveProducts = catchAsync(async (req, res) => {
   })();
 
   /* ==================================================================
-     16.8. THEME TOGGLE (WHITE / LIGHT THEME & PRINT PREPAREDNESS)
+     16.8. COLOR PRINT PREPAREDNESS
      ================================================================== */
-  (function initThemeToggle() {
-    const themeBtn = document.getElementById('themeToggleBtn');
-    if (!themeBtn) return;
-
-    // Check saved preference or system preference
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-theme');
-    }
-
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      const isLight = document.body.classList.contains('light-theme');
-      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
-      themeBtn.setAttribute('aria-label', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
-      themeBtn.setAttribute('title', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
-    });
-
-    // Before printing, reveal all items if needed
-    window.addEventListener('beforeprint', () => {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
-    });
-  })();
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+  });
 
   /* ==================================================================
      17. CONSOLE BRANDING & WELCOME
