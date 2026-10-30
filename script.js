@@ -1607,6 +1607,74 @@ const listActiveProducts = catchAsync(async (req, res) => {
   })();
 
 
+
+  /* ==================================================================
+     17. DIRECT CHANNELS & PROFILES SCROLL & HIGHLIGHT
+     ================================================================== */
+  (function initDirectChannelsScroll() {
+    const channelCard = document.getElementById('contact-channels');
+    if (!channelCard) return;
+
+    // Contact triggers: "Contact Me" and "Let's Talk" buttons across hero and navbar
+    const contactTriggers = document.querySelectorAll(
+      '.nav-cta-btn, .btn-hero-contact, a[href="#contact"], a[href="#contact-channels"]'
+    );
+
+    function scrollToChannels(e) {
+      // Don't intercept clicks that originate from inside the card itself (like copy buttons)
+      if (channelCard.contains(e.target)) return;
+
+      e.preventDefault();
+
+      // Close mobile navigation drawer if open
+      const nav = document.querySelector('nav') || document.querySelector('.navbar');
+      const toggle = document.querySelector('.nav-toggle');
+      if (nav && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      // Calculate scroll target positioning with navbar offset
+      const navHeight = nav ? nav.getBoundingClientRect().height : 80;
+      const cardRect = channelCard.getBoundingClientRect();
+      const targetTop = cardRect.top + window.scrollY - navHeight - 16;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth'
+      });
+
+      // Highlight the "DIRECT CHANNELS & PROFILES" card with a glowing pulse
+      channelCard.classList.remove('channels-focused');
+      void channelCard.offsetWidth; // force reflow
+      channelCard.classList.add('channels-focused');
+
+      setTimeout(() => {
+        channelCard.classList.remove('channels-focused');
+      }, 2600);
+    }
+
+    contactTriggers.forEach(btn => {
+      btn.addEventListener('click', scrollToChannels);
+    });
+
+    // If page is loaded with hash #contact-channels or #contact, smooth scroll and highlight
+    if (window.location.hash === '#contact-channels' || window.location.hash === '#contact') {
+      setTimeout(() => {
+        const nav = document.querySelector('nav') || document.querySelector('.navbar');
+        const navHeight = nav ? nav.getBoundingClientRect().height : 80;
+        const targetTop = channelCard.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+        window.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: 'smooth'
+        });
+        channelCard.classList.add('channels-focused');
+        setTimeout(() => channelCard.classList.remove('channels-focused'), 2600);
+      }, 450);
+    }
+  })();
+
   /* ==================================================================
      17. CONSOLE BRANDING & WELCOME
      ================================================================== */

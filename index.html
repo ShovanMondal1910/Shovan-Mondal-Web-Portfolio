@@ -64,13 +64,13 @@
 
         <!-- Mobile Drawer Footer CTA -->
         <div class="mobile-nav-footer">
-          <a href="#contact" class="nav-cta-btn mobile-cta">Let's Talk</a>
+          <a href="#contact-channels" class="nav-cta-btn mobile-cta">Let's Talk</a>
         </div>
       </div>
 
       <!-- Right Header Actions -->
       <div class="nav-actions">
-        <a href="#contact" class="nav-cta-btn">
+        <a href="#contact-channels" class="nav-cta-btn">
           <span>Let's Talk</span>
           <svg viewBox="0 0 13 10" width="12" height="10" fill="none">
             <path d="M1 5H11M11 5L7 1M11 5L7 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -157,7 +157,7 @@
 
         <!-- Action Buttons (Matching Reference Image) -->
         <div class="hero-actions-row">
-          <a href="#contact" class="btn-hero-contact magnetic-btn">
+          <a href="#contact-channels" class="btn-hero-contact magnetic-btn">
             <span>CONTACT ME</span>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
               <path
@@ -2910,17 +2910,23 @@
         </div>
 
         <!-- Right Column: Coordinates & Social Matrix Card -->
-        <div class="contact-card contact-info-card reveal in-view" style="--accent-color: #38bdf8;">
+        <div class="contact-card contact-info-card reveal in-view" id="contact-channels" style="--accent-color: #38bdf8;">
           <div class="contact-card-glow"></div>
           <div class="contact-card-inner">
             <div class="contact-card-header">
               <div class="card-terminal-dots">
-                <span class="term-dot dot-blue"></span>
                 <span class="term-dot dot-cyan"></span>
+                <span class="term-dot dot-green"></span>
                 <span class="term-dot dot-purple"></span>
               </div>
               <span class="contact-card-category">DIRECT CHANNELS &amp; PROFILES</span>
               <span class="contact-avail-pill"><span class="status-pulse-dot"></span>AVAILABLE FOR WORK</span>
+            </div>
+
+            <!-- Cyberpunk Accent Slider Track -->
+            <div class="channel-track-bar" aria-hidden="true">
+              <span class="channel-track-line"></span>
+              <span class="channel-track-dot"></span>
             </div>
 
             <div class="contact-info-list">
@@ -3075,178 +3081,11 @@
     <div class="footer-ambient-line" aria-hidden="true"></div>
 
     <div class="footer-container">
-      <!-- Main Content 4-Column Grid -->
-      <div class="footer-grid">
-        
-        <!-- Col 1: Brand, Identity, Status & Social Dock -->
-        <div class="footer-col footer-brand-col">
-          <div class="footer-brand-header">
-            <a href="#about" class="footer-logo" aria-label="Shovan Mondal Portfolio Home">
-              <span class="logo-bracket">&lt;</span><span class="logo-name">Shovan</span><span class="logo-bracket">/&gt;</span>
-            </a>
-            <span class="footer-badge-role">SWE</span>
-          </div>
-
-          <p class="footer-bio">
-            Full-Stack Software Engineer &amp; Competitive Programmer. Crafting performant web architectures, resilient distributed APIs, and scalable software solutions with obsessive attention to craft.
-          </p>
-
-          <div class="footer-availability-card">
-            <span class="status-indicator">
-              <span class="status-ping"></span>
-              <span class="status-core"></span>
-            </span>
-            <div class="status-text-wrap">
-              <span class="status-label">CURRENT STATUS</span>
-              <span class="status-value">Available for Roles &amp; Engineering Contracts</span>
-            </div>
-          </div>
-
-          <!-- Social Icons Dock -->
-          <div class="footer-social-dock" aria-label="Social Profiles">
-            <a href="https://github.com/ShovanMondal1910" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-gh" aria-label="GitHub Profile" title="GitHub">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/shovan-mondal-krishanu" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-li" aria-label="LinkedIn Profile" title="LinkedIn">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-            <a href="https://leetcode.com/u/_shovan_mondal_/" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-lc" aria-label="LeetCode Profile" title="LeetCode">
-              <svg viewBox="0 0 24 24" width="18" height="18">
-                <path fill="#FFA116" d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.874 5.874 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.818 3.868 5.86 5.86 0 0 0 3.69-.9 5.836 5.836 0 0 0 2.23-2.614l.088-.235a5.897 5.897 0 0 0 .36-1.554l.032-.294h-2.182a3.844 3.844 0 0 1-.225 1.018 3.75 3.75 0 0 1-1.42 1.666 3.79 3.79 0 0 1-2.39.584 3.85 3.85 0 0 1-3.13-2.513 3.6 3.6 0 0 1-.04-1.534 3.49 3.49 0 0 1 .785-1.365l3.585-3.84 5.044-5.393A1.373 1.373 0 0 0 13.483 0z"/>
-                <path fill="#ffffff" d="M16.038 8.084a1.373 1.373 0 0 0-1.942 0l-5.69 5.69a1.374 1.374 0 1 0 1.943 1.943l5.689-5.69a1.373 1.373 0 0 0 0-1.943z"/>
-                <path fill="#858585" d="M10.825 15.228h11.802a1.374 1.374 0 0 0 0-2.748H10.825a1.374 1.374 0 0 0 0 2.748z"/>
-              </svg>
-            </a>
-            <a href="https://codeforces.com/profile/24561251" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-cf" aria-label="Codeforces Profile" title="Codeforces">
-              <svg viewBox="0 0 24 24" width="18" height="18">
-                <rect x="2" y="9" width="4.5" height="12" rx="1.5" fill="#ffd13b"/>
-                <rect x="9.75" y="3" width="4.5" height="18" rx="1.5" fill="#2196f3"/>
-                <rect x="17.5" y="13.5" width="4.5" height="7.5" rx="1.5" fill="#f44336"/>
-              </svg>
-            </a>
-            <a href="https://twitter.com/ShovanM1910" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-tw" aria-label="X (Twitter) Profile" title="X (Twitter)">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://wa.me/1976192554" target="_blank" rel="noopener noreferrer" class="footer-social-icon social-wa" aria-label="WhatsApp Direct" title="WhatsApp">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 0C5.396 0 .029 5.367.029 11.987c0 2.108.549 4.168 1.595 5.976L0 24l6.235-1.636a11.954 11.954 0 005.784 1.498h.005c6.632 0 12-5.367 12-11.987C24.024 5.367 18.658 0 12.031 0zm0 21.973h-.004a9.94 9.94 0 01-5.068-1.385l-.364-.216-3.766.988 1.005-3.673-.237-.377a9.92 9.92 0 01-1.52-5.323c0-5.5 4.478-9.973 9.96-9.973 2.66 0 5.162 1.037 7.042 2.917 1.88 1.88 2.914 4.382 2.914 7.042-.006 5.501-4.484 9.973-9.965 9.973zm5.459-7.464c-.299-.15-1.77-.874-2.044-.974-.274-.1-.473-.15-.672.15s-.772.974-.946 1.173c-.174.199-.349.224-.648.075-.299-.15-1.262-.465-2.404-1.485-.889-.793-1.49-1.773-1.664-2.072-.174-.299-.019-.461.13-.61.134-.134.299-.349.448-.523.15-.174.199-.299.299-.498.1-.199.05-.374-.025-.523-.075-.15-.672-1.62-.921-2.219-.242-.583-.487-.504-.672-.513l-.573-.01c-.199 0-.523.075-.797.374s-1.046 1.022-1.046 2.493c0 1.471 1.071 2.89 1.221 3.089.15.199 2.107 3.218 5.105 4.513.713.309 1.27.493 1.704.631.716.228 1.368.196 1.883.119.575-.086 1.77-.723 2.019-1.421.249-.697.249-1.295.174-1.42-.075-.124-.274-.199-.573-.349z"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Col 2: Navigation Links -->
-        <div class="footer-col footer-nav-col">
-          <div class="footer-col-header">
-            <span class="footer-col-bullet"></span>
-            <h4 class="footer-col-title">NAVIGATION</h4>
-          </div>
-          <ul class="footer-links">
-            <li><a href="#about"><span class="footer-link-arrow">&rsaquo;</span>About &amp; Overview</a></li>
-            <li><a href="#experience"><span class="footer-link-arrow">&rsaquo;</span>Work Experience</a></li>
-            <li><a href="#skills"><span class="footer-link-arrow">&rsaquo;</span>Technical Skills</a></li>
-            <li><a href="#projects"><span class="footer-link-arrow">&rsaquo;</span>Featured Projects</a></li>
-            <li><a href="#education"><span class="footer-link-arrow">&rsaquo;</span>Education &amp; Academics</a></li>
-            <li><a href="#certifications"><span class="footer-link-arrow">&rsaquo;</span>Certifications &amp; Badges</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Exploration & Insights -->
-        <div class="footer-col footer-nav-col">
-          <div class="footer-col-header">
-            <span class="footer-col-bullet cyan"></span>
-            <h4 class="footer-col-title">EXPLORATION</h4>
-          </div>
-          <ul class="footer-links">
-            <li><a href="#blog"><span class="footer-link-arrow">&rsaquo;</span>Technical Articles</a></li>
-            <li><a href="#achievements"><span class="footer-link-arrow">&rsaquo;</span>Honors &amp; Awards</a></li>
-            <li><a href="#publications"><span class="footer-link-arrow">&rsaquo;</span>Research &amp; Papers</a></li>
-            <li><a href="#volunteer"><span class="footer-link-arrow">&rsaquo;</span>Volunteer &amp; Community</a></li>
-            <li><a href="#testimonials"><span class="footer-link-arrow">&rsaquo;</span>Recommendations</a></li>
-            <li><a href="#faq"><span class="footer-link-arrow">&rsaquo;</span>Frequently Asked Questions</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Direct Channels & Engineering Resume -->
-        <div class="footer-col footer-contact-col">
-          <div class="footer-col-header">
-            <span class="footer-col-bullet indigo"></span>
-            <h4 class="footer-col-title">CONNECT DIRECTLY</h4>
-          </div>
-
-          <div class="footer-channel-cards">
-            <!-- Email Item -->
-            <a href="mailto:shovanmondal746826@gmail.com" class="footer-channel-card">
-              <div class="channel-icon-box">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </div>
-              <div class="channel-info">
-                <span class="channel-label">EMAIL CHANNEL</span>
-                <span class="channel-value">shovanmondal746826@gmail.com</span>
-              </div>
-            </a>
-
-            <!-- Phone/WhatsApp Item -->
-            <a href="https://wa.me/1976192554" target="_blank" rel="noopener noreferrer" class="footer-channel-card">
-              <div class="channel-icon-box">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </div>
-              <div class="channel-info">
-                <span class="channel-label">DIRECT / WHATSAPP</span>
-                <span class="channel-value">(+880) 1764 858673</span>
-              </div>
-            </a>
-
-            <!-- Location Item -->
-            <div class="footer-channel-card static">
-              <div class="channel-icon-box">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <div class="channel-info">
-                <span class="channel-label">LOCATION &amp; TIMEZONE</span>
-                <span class="channel-value">Dhaka, Bangladesh &bull; UTC+06:00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- CV Download Button (Cyber Glass Action) -->
-          <a href="assets/docs/cv-shovan.pdf" download="Shovan-Mondal-CV.pdf" class="footer-cv-action" aria-label="Download Curriculum Vitae (PDF)">
-            <div class="cv-action-glow"></div>
-            <div class="cv-action-content">
-              <div class="cv-action-icon">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-              </div>
-              <div class="cv-action-text">
-                <span class="cv-action-title">DOWNLOAD RESUME</span>
-                <span class="cv-action-meta">Verified PDF &bull; 2026 Edition</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- Footer Bottom Bar: Clean, Executive, Balanced -->
+      <!-- Footer Bottom Bar -->
       <div class="footer-bottom">
-        <div class="footer-bottom-left">
-          <p class="footer-copyright">
-            &copy; 2026 <span class="author-name">Shovan Mondal</span>. All rights reserved.
-          </p>
-          <span class="footer-divider-dot">&bull;</span>
-          <span class="footer-craft-text">Architected with semantic HTML5, modern CSS3 &amp; clean JS.</span>
-        </div>
-
-        <div class="footer-bottom-right">
-          <button type="button" class="footer-back-to-top" id="footerBackToTop" aria-label="Scroll back to top of page">
-            <span>Back to Top</span>
-            <span class="back-to-top-icon">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="18 15 12 9 6 15"></polyline>
-              </svg>
-            </span>
-          </button>
-        </div>
+        <p class="footer-copyright">
+          &copy; 2026 <span class="author-name">Shovan Mondal</span>. All rights reserved.
+        </p>
       </div>
     </div>
   </footer>
