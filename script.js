@@ -232,9 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!typingText) return;
 
     const professions = [
-      'Web Developer & Problem Solver',
-      'Full-Stack Engineer',
-      'UI/UX & Frontend Developer',
+      'Full-Stack Software Engineer',
+      'Web Architect & Problem Solver',
+      'React & Node.js Specialist',
       'Competitive Programmer'
     ];
     let professionIndex = 0;
@@ -973,8 +973,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stage = document.getElementById('cyberWorkspace');
     const coffeeUnit = document.getElementById('coffeeUnit');
     const coffeeToast = document.getElementById('coffeeToast');
-
     const laptopUnit = document.getElementById('laptopUnit');
+    const laptopToast = document.getElementById('laptopToast');
 
     if (!stage) return;
 
@@ -988,8 +988,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-      const tiltX = -y * 14;
-      const tiltY = x * 14;
+      const tiltX = -y * 12;
+      const tiltY = x * 12;
 
       stage.style.transform = `perspective(1200px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
     });
@@ -999,28 +999,73 @@ document.addEventListener('DOMContentLoaded', () => {
       stage.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
     });
 
-    // Coffee Cup Click Interaction
-    if (coffeeUnit && coffeeToast) {
-      coffeeUnit.addEventListener('click', () => {
+    let boostTimer = null;
+
+    function triggerCoffeeBoost() {
+      if (coffeeUnit) {
+        coffeeUnit.classList.remove('caffeine-burst');
+        void coffeeUnit.offsetWidth; // re-flow
         coffeeUnit.classList.add('caffeine-burst');
+      }
+      if (coffeeToast) {
         coffeeToast.classList.add('show-toast');
+      }
 
-        // Laptop cyber boost glow
-        if (laptopUnit) {
-          laptopUnit.style.filter = 'drop-shadow(0 0 25px rgba(0, 245, 160, 0.7))';
-          setTimeout(() => {
-            laptopUnit.style.filter = '';
-          }, 1500);
+      if (laptopUnit) {
+        laptopUnit.classList.remove('laptop-supercharged');
+        void laptopUnit.offsetWidth; // re-flow
+        laptopUnit.classList.add('laptop-supercharged');
+      }
+      if (laptopToast) {
+        laptopToast.classList.add('show-toast');
+      }
+
+      clearTimeout(boostTimer);
+      boostTimer = setTimeout(() => {
+        if (coffeeUnit) coffeeUnit.classList.remove('caffeine-burst');
+        if (coffeeToast) coffeeToast.classList.remove('show-toast');
+        if (laptopUnit) laptopUnit.classList.remove('laptop-supercharged');
+        if (laptopToast) laptopToast.classList.remove('show-toast');
+      }, 2000);
+    }
+
+    function triggerLaptopBoost() {
+      if (laptopUnit) {
+        laptopUnit.classList.remove('laptop-supercharged');
+        void laptopUnit.offsetWidth;
+        laptopUnit.classList.add('laptop-supercharged');
+      }
+      if (laptopToast) {
+        laptopToast.classList.add('show-toast');
+      }
+
+      clearTimeout(boostTimer);
+      boostTimer = setTimeout(() => {
+        if (laptopUnit) laptopUnit.classList.remove('laptop-supercharged');
+        if (laptopToast) laptopToast.classList.remove('show-toast');
+      }, 1800);
+    }
+
+    if (coffeeUnit) {
+      coffeeUnit.addEventListener('click', triggerCoffeeBoost);
+      coffeeUnit.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerCoffeeBoost();
         }
+      });
+    }
 
-        setTimeout(() => {
-          coffeeUnit.classList.remove('caffeine-burst');
-          coffeeToast.classList.remove('show-toast');
-        }, 1800);
+    if (laptopUnit) {
+      laptopUnit.addEventListener('click', triggerLaptopBoost);
+      laptopUnit.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerLaptopBoost();
+        }
       });
     }
   })();
-
 
   /* ==================================================================
      14.8. TECHNICAL SKILLS CATEGORY FILTER
