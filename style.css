@@ -9342,3 +9342,577 @@ nav.open .nav-toggle .bar:nth-child(3) {
   line-height: 0;
   margin-left: 2px;
 }
+
+
+/* ============================================================
+   COLOR PRINT PAPER OPTIMIZATION (@media print)
+   Converts full dark portfolio to clean white paper layout
+   ============================================================ */
+@media print {
+  /* 1. Page & Layout Setup */
+  @page {
+    margin: 12mm 10mm 12mm 10mm;
+    size: A4 portrait;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #1e293b !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body::before {
+    display: none !important;
+  }
+
+  /* 2. Hide Non-Printable Web UI Elements */
+  nav,
+  .navbar,
+  .nav-menu,
+  .nav-actions,
+  .nav-toggle,
+  .back-to-top,
+  .cert-modal,
+  .blog-modal,
+  #spider-web-canvas,
+  #particles-js,
+  .hero-grid-overlay,
+  .experience-grid-overlay,
+  .cyber-aura-bg,
+  .cyber-stage-svg,
+  .coffee-steam-container,
+  .coffee-boost-toast,
+  .laptop-boost-toast,
+  .laptop-screen-glow,
+  .circuit-energy-orb,
+  .animated-stream-track,
+  .video-cv-player-container,
+  .video-cv-external-link,
+  .contact-form-card,
+  .faq-accordion-item:not(.active) .faq-answer {
+    display: none !important;
+  }
+
+  /* 3. Section Containers */
+  .section,
+  .hero-section,
+  .experience-section,
+  .skills-section,
+  .education-section,
+  .projects-section,
+  .certifications-section,
+  .blog-section,
+  .volunteer-section,
+  .testimonials-section,
+  .achievements-section,
+  .publications-section,
+  .faq-section,
+  .contact-section {
+    background: #ffffff !important;
+    padding: 15px 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure animated reveal items are 100% visible */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  /* 4. Headings & Titles in crisp printable colors */
+  h1, h2, h3, h4, h5, h6,
+  .hero-name,
+  .who-am-i-title,
+  .skills-main-title,
+  .experience-pill-badge,
+  .education-main-title,
+  .projects-main-title,
+  .certifications-main-title,
+  .blog-main-title,
+  .volunteer-main-title,
+  .testimonials-main-title,
+  .achievements-main-title,
+  .publications-main-title,
+  .faq-main-title,
+  .contact-main-title {
+    color: #0f172a !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .badge-text,
+  .highlight-cyan {
+    color: #0284c7 !important; /* Rich readable blue/cyan for color print */
+    font-weight: 700 !important;
+  }
+
+  .highlight-pink {
+    color: #db2777 !important; /* Rich readable magenta for color print */
+    font-weight: 700 !important;
+  }
+
+  .experience-pill-badge,
+  .skills-pill-badge,
+  .education-pill-badge,
+  .projects-pill-badge,
+  .certifications-pill-badge,
+  .blog-pill-badge,
+  .volunteer-pill-badge,
+  .testimonials-pill-badge,
+  .achievements-pill-badge,
+  .publications-pill-badge,
+  .faq-pill-badge,
+  .contact-pill-badge {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+
+  /* 5. Hero Section & Code Card */
+  .hero-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    padding: 0 !important;
+  }
+
+  .hero-content {
+    flex: 1 !important;
+  }
+
+  .hero-code-window {
+    flex: 1 !important;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+  }
+
+  .code-window-header {
+    background: #e2e8f0 !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+  }
+
+  .code-window-title {
+    color: #475569 !important;
+  }
+
+  .control-dot {
+    opacity: 0.8 !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+  .dot-red { background: #ef4444 !important; }
+  .dot-yellow { background: #eab308 !important; }
+  .dot-green { background: #22c55e !important; }
+
+  .code-keyword { color: #7c3aed !important; }
+  .code-var { color: #0369a1 !important; }
+  .code-prop { color: #0f172a !important; }
+  .code-string { color: #15803d !important; }
+  .code-comment { color: #64748b !important; }
+
+  /* 6. Who Am I Section */
+  .who-am-i-section {
+    margin: 20px auto 0 !important;
+    padding: 0 !important;
+  }
+
+  .who-am-i-photo-card {
+    border: 2px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    height: 280px !important;
+    width: 260px !important;
+  }
+
+  .who-am-i-description {
+    color: #334155 !important;
+  }
+
+  .who-am-i-stats {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+  }
+
+  .stat-number {
+    color: #0369a1 !important;
+    background: none !important;
+    -webkit-text-fill-color: #0369a1 !important;
+  }
+
+  .stat-label {
+    color: #64748b !important;
+  }
+
+  /* Video CV in print: replace video with a clean QR / link banner */
+  .video-cv-showcase {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 12px 18px !important;
+    margin: 15px 0 !important;
+  }
+
+  .video-cv-badge {
+    background: #e0f2fe !important;
+    border: 1px solid #7dd3fc !important;
+    color: #0369a1 !important;
+  }
+
+  .video-cv-header::after {
+    content: "Video URL: https://youtu.be/wpwF7-eFuww";
+    display: block;
+    color: #0284c7 !important;
+    font-weight: 600;
+    font-size: 9pt;
+  }
+
+  /* 7. Cards & Boxes: Clean White Paper Cards */
+  .exp-card,
+  .skill-card,
+  .skill-circle-card,
+  .edu-card,
+  .project-card,
+  .cert-card,
+  .blog-card,
+  .volunteer-card,
+  .testimonial-card,
+  .achievement-card,
+  .publication-card,
+  .contact-info-card,
+  .faq-accordion-item {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    color: #1e293b !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 14px !important;
+  }
+
+  /* Glowing borders/auras removed for print */
+  .card-glow,
+  .cert-card-glow,
+  .blog-card-glow,
+  .volunteer-card-glow,
+  .testimonial-card-glow,
+  .achievement-card-glow,
+  .publication-card-glow,
+  .circle-card-glow {
+    display: none !important;
+  }
+
+  /* 8. Text & Typography Clarity */
+  p, li, span, div {
+    color: #334155 !important;
+  }
+
+  strong, b, h1, h2, h3, h4, h5, h6 {
+    color: #0f172a !important;
+  }
+
+  /* Links */
+  a {
+    color: #0284c7 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Badges & Tags */
+  .project-tag,
+  .cert-tag,
+  .blog-tag,
+  .skill-badge {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Experience Dates & Roles */
+  .exp-card-duration,
+  .edu-card-year {
+    color: #0284c7 !important;
+    font-weight: 700 !important;
+  }
+
+  .company-name,
+  .edu-degree {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+  }
+
+  /* Contact Channels */
+  .contact-channel-item {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+  }
+}
+
+/* ============================================================
+   LIGHT / WHITE THEME MODE (For On-Screen Browsing & Print)
+   ============================================================ */
+body.light-theme {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body.light-theme::before {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+body.light-theme nav,
+body.light-theme .navbar {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme nav.scrolled,
+body.light-theme .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .nav-brand .brand-name {
+  color: #0f172a;
+}
+
+body.light-theme .nav-brand .brand-accent {
+  color: #0284c7;
+}
+
+body.light-theme .nav-link {
+  color: #334155;
+}
+
+body.light-theme .nav-link:hover,
+body.light-theme .nav-link.active {
+  color: #0284c7;
+}
+
+body.light-theme .hero-greeting {
+  color: #475569;
+}
+
+body.light-theme .hero-name {
+  color: #0f172a;
+}
+
+body.light-theme .hero-tagline,
+body.light-theme .who-am-i-description,
+body.light-theme .skills-subtitle,
+body.light-theme .education-subtitle,
+body.light-theme .projects-subtitle,
+body.light-theme .certifications-subtitle,
+body.light-theme .blog-subtitle,
+body.light-theme .volunteer-subtitle,
+body.light-theme .testimonials-subtitle,
+body.light-theme .achievements-subtitle,
+body.light-theme .publications-subtitle,
+body.light-theme .faq-subtitle,
+body.light-theme .contact-subtitle {
+  color: #334155;
+}
+
+body.light-theme .hero-code-window {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .code-window-header {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body.light-theme .code-window-title {
+  color: #64748b;
+}
+
+body.light-theme .code-prop {
+  color: #0f172a;
+}
+
+body.light-theme .code-string {
+  color: #16a34a;
+}
+
+body.light-theme .code-keyword {
+  color: #9333ea;
+}
+
+body.light-theme .code-var {
+  color: #0284c7;
+}
+
+body.light-theme .who-am-i-title,
+body.light-theme .skills-main-title,
+body.light-theme .education-main-title,
+body.light-theme .projects-main-title,
+body.light-theme .certifications-main-title,
+body.light-theme .blog-main-title,
+body.light-theme .volunteer-main-title,
+body.light-theme .testimonials-main-title,
+body.light-theme .achievements-main-title,
+body.light-theme .publications-main-title,
+body.light-theme .faq-main-title,
+body.light-theme .contact-main-title {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+body.light-theme .who-am-i-stats,
+body.light-theme .video-cv-showcase,
+body.light-theme .exp-card,
+body.light-theme .skill-card,
+body.light-theme .skill-circle-card,
+body.light-theme .edu-card,
+body.light-theme .project-card,
+body.light-theme .cert-card,
+body.light-theme .blog-card,
+body.light-theme .volunteer-card,
+body.light-theme .testimonial-card,
+body.light-theme .achievement-card,
+body.light-theme .publication-card,
+body.light-theme .contact-card,
+body.light-theme .faq-accordion-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  color: #1e293b;
+}
+
+body.light-theme .highlight-cyan {
+  color: #0284c7;
+  text-shadow: none;
+}
+
+body.light-theme .highlight-pink {
+  color: #db2777;
+  text-shadow: none;
+}
+
+body.light-theme .stat-number {
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light-theme .stat-label {
+  color: #64748b;
+}
+
+body.light-theme .exp-bullet-list li,
+body.light-theme .edu-bullet-list li,
+body.light-theme .volunteer-bullet-list li {
+  color: #334155;
+}
+
+body.light-theme .experience-pill-badge,
+body.light-theme .skills-pill-badge,
+body.light-theme .education-pill-badge,
+body.light-theme .projects-pill-badge,
+body.light-theme .certifications-pill-badge,
+body.light-theme .blog-pill-badge,
+body.light-theme .volunteer-pill-badge,
+body.light-theme .testimonials-pill-badge,
+body.light-theme .achievements-pill-badge,
+body.light-theme .publications-pill-badge,
+body.light-theme .faq-pill-badge,
+body.light-theme .contact-pill-badge {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+body.light-theme .badge-text {
+  color: #0f172a;
+}
+
+body.light-theme .contact-channel-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+body.light-theme .channel-title {
+  color: #0f172a;
+}
+
+body.light-theme .channel-desc {
+  color: #64748b;
+}
+
+/* Theme Toggle Button Header Icon */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 160, 0.35);
+  background: rgba(14, 20, 42, 0.75);
+  color: #00f5a0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  margin-right: 6px;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.08);
+  border-color: #00f5a0;
+  box-shadow: 0 0 15px rgba(0, 245, 160, 0.45);
+}
+
+body.light-theme .theme-toggle-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0284c7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .theme-toggle-btn:hover {
+  border-color: #0284c7;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.3);
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+body.light-theme .theme-icon-moon {
+  display: none;
+}
+
+body.light-theme .theme-icon-sun {
+  display: block;
+}
