@@ -1,14 +1,50 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shovan's Portfolio</title>
+  <title>Shovan Mondal | Full-Stack Software Engineer &amp; Problem Solver</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Shovan Mondal | Full-Stack Software Engineer &amp; Problem Solver">
+  <meta name="description" content="Portfolio of Shovan Mondal — Full-Stack Web Developer, CSE student at AIUB, and algorithmic problem solver building scalable web applications, robust backend architectures, and modern digital experiences with React, Node.js, and TypeScript.">
+  <meta name="keywords" content="Shovan Mondal, Web Developer, Full-Stack Engineer, React, Node.js, JavaScript, TypeScript, Software Engineer Portfolio, AIUB, LeetCode">
+  <meta name="author" content="Shovan Mondal">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#080b16">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shovanmondal.netlify.app/">
+  <meta property="og:title" content="Shovan Mondal | Full-Stack Software Engineer &amp; Problem Solver">
+  <meta property="og:description" content="Explore projects, skills, certifications, and technical experience of Shovan Mondal, Full-Stack Web Developer &amp; CSE Engineer.">
+  <meta property="og:image" content="assets/images/shovan.jpeg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shovan Mondal | Full-Stack Software Engineer &amp; Problem Solver">
+  <meta name="twitter:description" content="Explore projects, skills, certifications, and technical experience of Shovan Mondal, Full-Stack Web Developer &amp; CSE Engineer.">
+  <meta name="twitter:image" content="assets/images/shovan.jpeg">
+
+  <!-- High-Tech Neon SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f5a0'/%3E%3Cstop offset='100%25' stop-color='%2300ccff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='32,4 58,19 58,45 32,60 6,45 6,19' fill='%23080b16' stroke='url(%23g)' stroke-width='3.5'/%3E%3Ctext x='32' y='38' font-family='system-ui, sans-serif' font-size='20' font-weight='800' fill='url(%23g)' text-anchor='middle' dominant-baseline='middle'%3ESM%3C/text%3E%3C/svg%3E">
+
+  <!-- CDN Preconnect for Instant DevIcon Loading -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <!-- Premium Typography: Plus Jakarta Sans, Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
 
   <nav class="navbar" id="main-nav">
     <div class="nav-container">
@@ -89,6 +125,12 @@
     <div class="hero-container">
       <!-- Left Column: Intro Greeting, Tagline, Socials & CTA Buttons -->
       <div class="hero-content">
+        <!-- Live Availability Status Pill -->
+        <div class="hero-status-pill" role="status" aria-label="Available for full-time roles and freelance opportunities">
+          <span class="status-indicator-dot"></span>
+          <span class="status-indicator-text">AVAILABLE FOR ROLES &amp; FREELANCE</span>
+        </div>
+
         <h1 class="hero-greeting">Hello,</h1>
         <h2 class="hero-name">I'm <span class="highlight-pink">Shovan Mondal</span></h2>
 
@@ -186,7 +228,8 @@
     <span class="code-string">'MongoDB'</span><span class="code-comma">,</span> <span class="code-string">'REST APIs'</span><span class="code-comma">,</span> <span class="code-string">'Docker'</span>
   <span class="code-bracket">]</span><span class="code-comma">,</span>
   <span class="code-prop">practices</span><span class="code-colon">:</span> <span class="code-bracket">[</span>
-    <span class="code-string">'Clean Architecture'</span><span class="code-comma">,</span> <span class="code-string">'System Design'</span><span class="code-comma">,</span> <span class="code-string">'Problem Solving'</span>
+    <span class="code-string">'Clean Architecture'</span><span class="code-comma">,</span>
+    <span class="code-string">'System Design'</span><span class="code-comma">,</span> <span class="code-string">'Problem Solving'</span>
   <span class="code-bracket">]</span><span class="code-comma">,</span>
   <span class="code-prop code-prop-special">status</span><span class="code-colon">:</span> <span class="code-string">'Open to Engineering Roles'</span>
 <span class="code-bracket">}</span><span class="code-semicolon">;</span></code></pre>
@@ -199,7 +242,7 @@
       <!-- Centered Profile Photo Card -->
       <div class="who-am-i-photo-wrapper">
         <div class="who-am-i-photo-card">
-          <img src="assets/images/shovan.jpeg" alt="Shovan Mondal" class="who-am-i-img" loading="eager">
+          <img src="assets/images/shovan.jpeg" alt="Shovan Mondal" class="who-am-i-img" loading="eager" decoding="async">
         </div>
       </div>
 
@@ -207,72 +250,27 @@
       <div class="who-am-i-content">
         <h2 class="who-am-i-title">WHO AM I?</h2>
         <p class="who-am-i-description">
-          I'm <span class="highlight-cyan">Shovan Mondal</span>, a passionate Full-Stack Web Developer and Computer
-          Science &amp; Engineering student at <span class="highlight-cyan">American International University-Bangladesh
-            (AIUB)</span>. My expertise centers on building scalable, modern web applications, responsive user
-          interfaces, and robust backend systems using the modern JavaScript ecosystem—including <span
-            class="highlight-cyan">React.js, Node.js, Express, MongoDB, and MySQL</span>. Driven by a problem-solving
-          mindset and continuous learning, I actively solve algorithmic challenges and compete on LeetCode. With
-          hands-on experience spanning full-stack development, database architecture, and IoT systems, I combine
-          academic engineering with practical implementation to craft clean, performant, and impactful digital
-          experiences.
+          I'm <span class="highlight-cyan">Shovan Mondal</span>, a Full-Stack Software Engineer and Computer Science &amp; Engineering scholar at <span class="highlight-cyan">American International University-Bangladesh (AIUB)</span>. I specialize in architecting high-performance web applications, resilient backend microservices, and modern user experiences using the JavaScript/TypeScript ecosystem—including <span class="highlight-cyan">React.js, Next.js, Node.js, Express, PostgreSQL, and MongoDB</span>. Grounded in strong algorithmic foundations and data structures, I actively solve complex computational challenges on LeetCode. From distributed architectures and database optimization to responsive cross-platform interfaces, I bridge academic computer science rigor with production-grade engineering to deliver scalable, reliable, and user-centric software.
         </p>
-
-        <!-- Video CV Player Showcase (YouTube Embedded) -->
-        <div class="video-cv-showcase" id="videoCvShowcase">
-          <div class="video-cv-header">
-            <div class="video-cv-badge">
-              <span class="video-cv-pulse"></span>
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <span>VIDEO INTRODUCTION &amp; CV</span>
-            </div>
-            <a href="https://youtu.be/wpwF7-eFuww" target="_blank" rel="noopener noreferrer" class="video-cv-external-link" title="Open video in YouTube">
-              <span>Watch on YouTube</span>
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
-          </div>
-
-          <div class="video-cv-player-container">
-            <iframe
-              class="video-cv-iframe"
-              src="https://www.youtube.com/embed/wpwF7-eFuww?rel=0&amp;modestbranding=1&amp;enablejsapi=1"
-              title="Shovan Mondal - Video Introduction &amp; CV"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
 
         <!-- Stats Counters Row -->
         <div class="who-am-i-stats">
           <div class="stat-item">
-            <div class="stat-number" data-target="5">0</div>
-            <div class="stat-label">Projects Completed</div>
+            <div class="stat-number" data-target="15" data-suffix="+">0</div>
+            <div class="stat-label">Projects Delivered</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number" data-target="1">0</div>
-            <div class="stat-label">Years Experience</div>
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">LeetCode &amp; CP Solved</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number" data-target="10">0</div>
-            <div class="stat-label">Satisfied Clients</div>
+            <div class="stat-number" data-target="100" data-suffix="%">0</div>
+            <div class="stat-label">Client &amp; Code Quality</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
 
 
   <!-- ============================================================
@@ -291,95 +289,15 @@
     </div>
 
     <div class="experience-container">
-      <!-- Left Column: Interactive Cyberpunk Workspace (Laptop & Coffee) -->
-      <div class="experience-illustration-col">
-        <div class="cyber-workspace-stage" id="cyberWorkspace">
+      <!-- Left Column: Interactive Cyberpunk Workspace (experience_animation.gif) -->
+      <div class="experience-illustration-col" data-aos="fade-right">
+        <div class="cyber-workspace-stage" id="cyberWorkspace" aria-label="Interactive 3D Developer Workstation">
           <!-- Ambient Background Radial Aura -->
           <div class="cyber-aura-bg"></div>
 
-          <!-- Isometric Vector Pads & Circuit Grid -->
-          <svg class="cyber-stage-svg" viewBox="0 0 540 420" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-            <defs>
-              <!-- Neon Glow Filters -->
-              <filter id="neonGlowOrange" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <filter id="neonGlowCyan" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <!-- Pad Gradients -->
-              <linearGradient id="padGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ff7b39" />
-                <stop offset="50%" stop-color="#ff3b77" />
-                <stop offset="100%" stop-color="#a855f7" />
-              </linearGradient>
-            </defs>
-
-            <!-- Background Isometric Grid Mesh -->
-            <g class="cyber-svg-grid" stroke="rgba(255,255,255,0.04)" stroke-width="1">
-              <line x1="70" y1="90" x2="470" y2="330" />
-              <line x1="120" y1="60" x2="520" y2="300" />
-              <line x1="20" y1="130" x2="420" y2="370" />
-              <line x1="470" y1="90" x2="70" y2="330" />
-              <line x1="520" y1="130" x2="120" y2="370" />
-              <line x1="420" y1="60" x2="20" y2="300" />
-            </g>
-
-            <!-- Coffee Pad (Isometric Rounded Rectangle) -->
-            <path class="isometric-pad coffee-pad"
-              d="M 115 195 L 165 165 Q 175 159 185 165 L 205 177 Q 215 183 205 189 L 155 219 Q 145 225 135 219 L 115 207 Q 105 201 115 195 Z"
-              fill="rgba(255, 59, 119, 0.05)" stroke="url(#padGradOrange)" stroke-width="2.5"
-              filter="url(#neonGlowOrange)" />
-
-            <!-- Laptop Pad (Isometric Rounded Rectangle) -->
-            <path class="isometric-pad laptop-pad"
-              d="M 175 285 L 365 175 Q 380 166 395 175 L 465 216 Q 478 224 465 232 L 275 342 Q 260 351 245 342 L 175 301 Q 162 293 175 285 Z"
-              fill="rgba(168, 85, 247, 0.06)" stroke="url(#padGradOrange)" stroke-width="2.8"
-              filter="url(#neonGlowOrange)" />
-
-            <!-- Accent Corner Pad -->
-            <path class="isometric-pad accent-pad"
-              d="M 80 295 L 115 275 Q 122 271 129 275 L 140 282 Q 146 286 140 290 L 105 310 Q 98 314 92 310 L 80 302 Q 74 298 80 295 Z"
-              fill="rgba(255, 123, 57, 0.04)" stroke="url(#padGradOrange)" stroke-width="2"
-              filter="url(#neonGlowOrange)" />
-
-            <!-- Connecting Circuit Energy Pulse Line -->
-            <path class="circuit-path" d="M 160 195 Q 210 240 260 250" fill="none" stroke="#00f5a0" stroke-width="2.5"
-              stroke-dasharray="6,8" filter="url(#neonGlowCyan)" />
-
-            <!-- Dynamic Energy Pulse Orbs flowing from Coffee Cup to Laptop -->
-            <circle class="circuit-energy-orb" r="3.5" fill="#00f5a0" filter="url(#neonGlowCyan)">
-              <animateMotion dur="2.4s" repeatCount="indefinite" path="M 160 195 Q 210 240 260 250" />
-            </circle>
-            <circle class="circuit-energy-orb orb-secondary" r="2.5" fill="#ff7b39" filter="url(#neonGlowOrange)">
-              <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 160 195 Q 210 240 260 250" />
-            </circle>
-          </svg>
-
-          <!-- Coffee Cup Unit (Floating + Steam Wisps + Interactive Boost) -->
-          <div class="coffee-unit" id="coffeeUnit" title="Click for Coffee Fuel! ☕" role="button" tabindex="0" aria-label="Coffee Fuel Boost">
-            <div class="coffee-steam-container">
-              <span class="steam-wisp wisp-1"></span>
-              <span class="steam-wisp wisp-2"></span>
-              <span class="steam-wisp wisp-3"></span>
-            </div>
-            <img src="assets/images/coffee-cup.png" alt="Cyber Coffee Cup" class="coffee-img">
-            <div class="coffee-boost-toast" id="coffeeToast">+100 Caffeine ⚡</div>
-          </div>
-
-          <!-- Laptop Unit (Floating Cyber Display) -->
-          <div class="laptop-unit" id="laptopUnit" title="Cyber Workstation 💻" role="button" tabindex="0" aria-label="Cyberpunk Workstation">
-            <div class="laptop-screen-glow"></div>
-            <img src="assets/images/laptop.png" alt="Cyberpunk Developer Laptop" class="laptop-img">
-            <div class="laptop-boost-toast" id="laptopToast">System Overclocked 🚀</div>
+          <!-- Developer Experience Animation GIF -->
+          <div class="cyber-gif-wrapper">
+            <img src="assets/images/experience_animation.gif" alt="Developer Experience Animation" class="cyber-stage-gif" width="336" height="346" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -390,9 +308,9 @@
         <div class="exp-card">
           <div class="exp-card-header">
             <div class="exp-card-title-group">
-              <h3 class="exp-card-role">Full-Stack Web Developer</h3>
+              <h3 class="exp-card-role">Full-Stack Software Engineer</h3>
               <div class="exp-card-company">
-                <span class="company-name">Self-Employed / Freelance</span>
+                <span class="company-name">Independent Engineering &amp; Consulting</span>
                 <span class="company-sep">•</span>
                 <span class="company-loc">Dhaka, Bangladesh</span>
               </div>
@@ -520,63 +438,63 @@
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #f7df1e;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">JavaScript</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #3178c6;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">TypeScript</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #3776ab;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Python</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #00599c;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">C++</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #ed8b00;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Java</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #9b4993;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">C#</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #e34f26;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">HTML5</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #1572b6;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">CSS3</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #777bb4;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">PHP</span>
             </div>
@@ -585,63 +503,63 @@
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #f7df1e;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">JavaScript</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #3178c6;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">TypeScript</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #3776ab;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Python</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #00599c;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">C++</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #ed8b00;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Java</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #9b4993;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">C#</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #e34f26;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">HTML5</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #1572b6;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">CSS3</span>
             </div>
             <div class="skill-circle-card" data-category="languages" style="--brand-color: #777bb4;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">PHP</span>
             </div>
@@ -657,63 +575,63 @@
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #61dafb;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">React.js</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #ffffff;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Next.js</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #68a063;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Node.js</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #cbd5e1;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Express.js</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #06b6d4;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Tailwind CSS</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #7952b3;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Bootstrap</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #007fff;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Material UI</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #ffca28;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Firebase</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #009639;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Nginx</span>
             </div>
@@ -722,63 +640,63 @@
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #61dafb;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">React.js</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #ffffff;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Next.js</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #68a063;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Node.js</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #cbd5e1;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Express.js</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #06b6d4;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Tailwind CSS</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #7952b3;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Bootstrap</span>
             </div>
             <div class="skill-circle-card" data-category="frontend" style="--brand-color: #007fff;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" alt="Material UI" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Material UI</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #ffca28;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Firebase</span>
             </div>
             <div class="skill-circle-card" data-category="backend" style="--brand-color: #009639;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Nginx</span>
             </div>
@@ -794,77 +712,77 @@
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #47a248;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MongoDB</span>
             </div>
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #336791;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">PostgreSQL</span>
             </div>
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #00758f;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MySQL</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #2496ed;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Docker</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #f05032;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git & GitHub" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git & GitHub" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Git &amp; GitHub</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #fcc624;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Linux</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #ff6c37;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Postman</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #007acc;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">VS Code</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #f24e1e;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Figma</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #21759b;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">WordPress</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #e16737;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MATLAB</span>
             </div>
@@ -873,77 +791,77 @@
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #47a248;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MongoDB</span>
             </div>
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #336791;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">PostgreSQL</span>
             </div>
             <div class="skill-circle-card" data-category="databases" style="--brand-color: #00758f;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MySQL</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #2496ed;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Docker</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #f05032;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git & GitHub" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git & GitHub" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Git &amp; GitHub</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #fcc624;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Linux</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #ff6c37;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Postman</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #007acc;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">VS Code</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #f24e1e;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">Figma</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #21759b;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" alt="WordPress" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">WordPress</span>
             </div>
             <div class="skill-circle-card" data-category="tools" style="--brand-color: #e16737;">
               <div class="circle-card-glow"></div>
               <div class="circle-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" loading="lazy">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" loading="lazy" decoding="async">
               </div>
               <span class="circle-skill-name">MATLAB</span>
             </div>
@@ -976,8 +894,24 @@
         </p>
       </div>
 
-      <!-- Cyberpunk Interactive Timeline -->
-      <div class="education-timeline" aria-label="Education Milestones">
+      <!-- 2-Column Education Container Matching Experience Section -->
+      <div class="education-container">
+        <!-- Left Column: Interactive Cyberpunk Academic Stage (education_animation.gif) -->
+        <div class="education-illustration-col" data-aos="fade-right">
+          <div class="education-stage" id="educationStage" aria-label="Academic Journey Animation">
+            <!-- Ambient Background Radial Aura -->
+            <div class="edu-aura-bg"></div>
+
+            <!-- Education Animation GIF with Holographic Floating Stage -->
+            <div class="edu-gif-wrapper">
+              <img src="assets/images/education_animation.gif" alt="Academic Journey Animation" class="edu-stage-gif" width="326" height="392" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Academic Milestone Cards Timeline -->
+        <div class="education-timeline-col" data-aos="fade-left">
+          <div class="education-timeline" aria-label="Education Milestones">
         <!-- 1. Bachelor of Science in CSE -->
         <div class="edu-card reveal in-view" style="--accent-color: #00f5a0;">
           <div class="edu-card-glow"></div>
@@ -1122,6 +1056,8 @@
               <span class="edu-tag">Primary Education</span>
               <span class="edu-tag">Foundational Studies</span>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
@@ -1519,7 +1455,7 @@
           <div class="cert-card-inner">
             <!-- Thumbnail Visual -->
             <div class="cert-thumb-wrapper cert-preview-trigger" data-cert-src="assets/certificates/art-of-problem-definition.jpg" data-cert-type="image" data-cert-title="Art of Problem Solving &amp; Definition" data-cert-issuer="UNICEF &amp; Passport to Earning" data-cert-date="June 2026" role="button" tabindex="0" aria-label="Preview Art of Problem Solving Certificate">
-              <img src="assets/certificates/art-of-problem-definition.jpg" alt="Art of Problem Definition Certificate" class="cert-thumb-img" loading="lazy">
+              <img src="assets/certificates/art-of-problem-definition.jpg" alt="Art of Problem Definition Certificate" class="cert-thumb-img" loading="lazy" decoding="async">
               <div class="cert-thumb-overlay">
                 <span class="cert-view-badge">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/></svg>
@@ -1569,7 +1505,7 @@
           <div class="cert-card-glow"></div>
           <div class="cert-card-inner">
             <div class="cert-thumb-wrapper cert-preview-trigger" data-cert-src="assets/certificates/excel-essentials.jpg" data-cert-type="image" data-cert-title="Excel Essentials for Workplace Productivity" data-cert-issuer="UNICEF &amp; Passport to Earning" data-cert-date="June 2026" role="button" tabindex="0" aria-label="Preview Excel Essentials Certificate">
-              <img src="assets/certificates/excel-essentials.jpg" alt="Excel Essentials Certificate" class="cert-thumb-img" loading="lazy">
+              <img src="assets/certificates/excel-essentials.jpg" alt="Excel Essentials Certificate" class="cert-thumb-img" loading="lazy" decoding="async">
               <div class="cert-thumb-overlay">
                 <span class="cert-view-badge">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/></svg>
@@ -1618,7 +1554,7 @@
           <div class="cert-card-glow"></div>
           <div class="cert-card-inner">
             <div class="cert-thumb-wrapper cert-preview-trigger" data-cert-src="assets/certificates/cognitive-empowerment.jpg" data-cert-type="image" data-cert-title="Unleashing Cognitive Empowerment" data-cert-issuer="UNICEF &amp; Passport to Earning" data-cert-date="June 2026" role="button" tabindex="0" aria-label="Preview Cognitive Empowerment Certificate">
-              <img src="assets/certificates/cognitive-empowerment.jpg" alt="Cognitive Empowerment Certificate" class="cert-thumb-img" loading="lazy">
+              <img src="assets/certificates/cognitive-empowerment.jpg" alt="Cognitive Empowerment Certificate" class="cert-thumb-img" loading="lazy" decoding="async">
               <div class="cert-thumb-overlay">
                 <span class="cert-view-badge">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/></svg>
@@ -1667,7 +1603,7 @@
           <div class="cert-card-glow"></div>
           <div class="cert-card-inner">
             <div class="cert-thumb-wrapper cert-preview-trigger" data-cert-src="assets/certificates/workplace-communication.jpg" data-cert-type="image" data-cert-title="Workplace Communication Essentials" data-cert-issuer="UNICEF &amp; Passport to Earning" data-cert-date="June 2026" role="button" tabindex="0" aria-label="Preview Workplace Communication Certificate">
-              <img src="assets/certificates/workplace-communication.jpg" alt="Workplace Communication Certificate" class="cert-thumb-img" loading="lazy">
+              <img src="assets/certificates/workplace-communication.jpg" alt="Workplace Communication Certificate" class="cert-thumb-img" loading="lazy" decoding="async">
               <div class="cert-thumb-overlay">
                 <span class="cert-view-badge">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/></svg>
@@ -1716,7 +1652,7 @@
           <div class="cert-card-glow"></div>
           <div class="cert-card-inner">
             <div class="cert-thumb-wrapper cert-preview-trigger" data-cert-src="assets/certificates/online-ict-course.jpg" data-cert-type="image" data-cert-title="Online ICT Course for First-Year Students" data-cert-issuer="National University &amp; Passport to Earning" data-cert-date="June 11, 2026 (Score: 97%)" role="button" tabindex="0" aria-label="Preview Online ICT Course Certificate">
-              <img src="assets/certificates/online-ict-course.jpg" alt="Online ICT Course Certificate" class="cert-thumb-img" loading="lazy">
+              <img src="assets/certificates/online-ict-course.jpg" alt="Online ICT Course Certificate" class="cert-thumb-img" loading="lazy" decoding="async">
               <div class="cert-thumb-overlay">
                 <span class="cert-view-badge">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/></svg>
@@ -2886,14 +2822,19 @@
               <span class="contact-status-live"><span class="status-pulse-dot"></span>DIRECT INBOX</span>
             </div>
 
-            <form class="contact-form" id="contactForm" novalidate>
+            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <!-- Web3Forms Access Key: Replace with your key from web3forms.com -->
+              <input type="hidden" name="access_key" id="web3forms_key" value="5e2fee06-e61d-488d-938c-bdf19f350106">
+              <input type="hidden" name="subject" value="New Portfolio Message - Shovan Mondal">
+              <input type="hidden" name="from_name" value="Portfolio Contact Form">
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
               <div class="form-group modern-input-group">
                 <label for="name">Your Name</label>
                 <div class="input-wrapper">
                   <span class="input-icon">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                   </span>
-                  <input type="text" id="name" required placeholder="e.g. John Doe">
+                  <input type="text" id="name" name="name" required placeholder="e.g. John Doe">
                 </div>
               </div>
 
@@ -2903,7 +2844,7 @@
                   <span class="input-icon">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                   </span>
-                  <input type="email" id="email" required placeholder="john@example.com">
+                  <input type="email" id="email" name="email" required placeholder="john@example.com">
                 </div>
               </div>
 
@@ -2913,7 +2854,7 @@
                   <span class="input-icon textarea-icon">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   </span>
-                  <textarea id="message" rows="4" required placeholder="Write your message, project idea, or job proposal here..."></textarea>
+                  <textarea id="message" name="message" rows="4" required placeholder="Write your message, project idea, or job proposal here..."></textarea>
                 </div>
               </div>
 
@@ -2934,7 +2875,7 @@
               </div>
               <div class="form-error" id="formError">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                <span>Unable to dispatch. Please email directly at shovanmondal746826@gmail.com</span>
+                <span>Unable to dispatch. Please email directly at shovanmondal1910@gmail.com</span>
               </div>
             </form>
           </div>
@@ -2971,9 +2912,9 @@
                 </div>
                 <div class="info-content">
                   <span class="info-label">Direct Email</span>
-                  <a href="mailto:shovanmondal746826@gmail.com" class="info-link">shovanmondal746826@gmail.com</a>
+                  <a href="mailto:shovanmondal1910@gmail.com" class="info-link">shovanmondal1910@gmail.com</a>
                 </div>
-                <button type="button" class="copy-action-btn" data-copy-text="shovanmondal746826@gmail.com" aria-label="Copy Email Address" title="Copy Email">
+                <button type="button" class="copy-action-btn" data-copy-text="shovanmondal1910@gmail.com" aria-label="Copy Email Address" title="Copy Email">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <span class="copy-tooltip">Copy</span>
                 </button>
@@ -3140,7 +3081,7 @@
 
       <div class="cert-modal-content">
         <div class="cert-modal-media" id="certModalMedia">
-          <img src="" alt="Certificate Full Preview" class="cert-modal-img" id="certModalImg">
+          <img src="" alt="Certificate Full Preview" class="cert-modal-img" id="certModalImg" decoding="async" loading="lazy">
           <iframe src="" class="cert-modal-pdf" id="certModalPdf" title="PDF Certificate Viewer"></iframe>
         </div>
 
@@ -3189,7 +3130,7 @@
           </div>
           <h2 class="blog-modal-title" id="blogModalTitle">Article Title</h2>
           <div class="blog-modal-author">
-            <img src="assets/images/shovan.jpeg" alt="Shovan Mondal" class="author-avatar-img">
+            <img src="assets/images/shovan.jpeg" alt="Shovan Mondal" class="author-avatar-img" decoding="async" loading="lazy">
             <div class="author-info">
               <span class="author-name">Shovan Mondal</span>
               <span class="author-role">Full-Stack Engineer &amp; Problem Solver</span>

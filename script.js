@@ -285,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       statNumbers.forEach(stat => {
         const target = parseFloat(stat.getAttribute('data-target')) || 0;
+        const suffix = stat.getAttribute('data-suffix') || '';
         const duration = 1800; // ms
         const frameDuration = 1000 / 60;
         const totalFrames = Math.round(duration / frameDuration);
@@ -296,10 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
           frame++;
           current += increment;
           if (frame >= totalFrames || current >= target) {
-            stat.textContent = target;
+            stat.textContent = target + suffix;
             clearInterval(counterTimer);
           } else {
-            stat.textContent = Math.floor(current);
+            stat.textContent = Math.floor(current) + suffix;
           }
         }, frameDuration);
       });
@@ -724,14 +725,22 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        // Simulated network request (replace with actual backend endpoint if desired)
-        const response = await new Promise(resolve => {
-          setTimeout(() => {
-            resolve({ ok: true, status: 200, message: 'Message sent successfully!' });
-          }, 1200);
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (result && result.success) {
           if (formSuccess) formSuccess.style.display = 'flex';
           contactForm.reset();
           // Reset floating labels
@@ -744,7 +753,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         } else {
-          if (formError) formError.style.display = 'flex';
+          if (formError) {
+            const errorSpan = formError.querySelector('span');
+            if (errorSpan && result && result.message) {
+              errorSpan.textContent = result.message;
+            }
+            formError.style.display = 'flex';
+          }
         }
       } catch (err) {
         console.error('Contact form submission error:', err);
