@@ -726,21 +726,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const formData = new FormData(contactForm);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
 
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: json
+          body: formData
         });
 
-        const result = await response.json();
-
-        if (result && result.success) {
+        if (response.ok) {
           if (formSuccess) formSuccess.style.display = 'flex';
           contactForm.reset();
           // Reset floating labels
@@ -753,13 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         } else {
-          if (formError) {
-            const errorSpan = formError.querySelector('span');
-            if (errorSpan && result && result.message) {
-              errorSpan.textContent = result.message;
-            }
-            formError.style.display = 'flex';
-          }
+          if (formError) formError.style.display = 'flex';
         }
       } catch (err) {
         console.error('Contact form submission error:', err);
